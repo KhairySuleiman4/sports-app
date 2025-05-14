@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("This is the initial commit")
+        print("This is the second commit")
         // Do any additional setup after loading the view.
     }
 
