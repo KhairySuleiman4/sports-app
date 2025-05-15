@@ -13,6 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         print("This is the initial commit")
         print("This is the second commit")
+        print("This is the third commit")
         // Do any additional setup after loading the view.
     }
 
