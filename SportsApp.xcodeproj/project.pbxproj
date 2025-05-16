@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04C12DE52DD7284700A0E0AC /* FavouriteLeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12DE42DD7284700A0E0AC /* FavouriteLeaguesViewController.swift */; };
+		04C12DE72DD7296700A0E0AC /* FavLeagueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12DE62DD7296700A0E0AC /* FavLeagueCell.swift */; };
 		CF32556F2DD52A92000CE58B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF32556E2DD52A92000CE58B /* AppDelegate.swift */; };
 		CF3255712DD52A92000CE58B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3255702DD52A92000CE58B /* SceneDelegate.swift */; };
 		CF3255732DD52A92000CE58B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3255722DD52A92000CE58B /* ViewController.swift */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04C12DE42DD7284700A0E0AC /* FavouriteLeaguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteLeaguesViewController.swift; sourceTree = "<group>"; };
+		04C12DE62DD7296700A0E0AC /* FavLeagueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavLeagueCell.swift; sourceTree = "<group>"; };
 		CF32556B2DD52A92000CE58B /* SportsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF32556E2DD52A92000CE58B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF3255702DD52A92000CE58B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				CF460C662DD6EFF4004A3B52 /* SportCell.swift */,
 				CF460C682DD6FCAE004A3B52 /* SportLeaguesViewController.swift */,
 				CF460C6A2DD709ED004A3B52 /* LeagueCell.swift */,
+				04C12DE42DD7284700A0E0AC /* FavouriteLeaguesViewController.swift */,
+				04C12DE62DD7296700A0E0AC /* FavLeagueCell.swift */,
 			);
 			path = SportsApp;
 			sourceTree = "<group>";
@@ -157,6 +163,8 @@
 				CF32556F2DD52A92000CE58B /* AppDelegate.swift in Sources */,
 				CF460C5F2DD6E6D9004A3B52 /* SportsViewController.swift in Sources */,
 				CF460C692DD6FCAE004A3B52 /* SportLeaguesViewController.swift in Sources */,
+				04C12DE72DD7296700A0E0AC /* FavLeagueCell.swift in Sources */,
+				04C12DE52DD7284700A0E0AC /* FavouriteLeaguesViewController.swift in Sources */,
 				CF3255792DD52A92000CE58B /* SportsApp.xcdatamodeld in Sources */,
 				CF3255712DD52A92000CE58B /* SceneDelegate.swift in Sources */,
 				CF460C6B2DD709ED004A3B52 /* LeagueCell.swift in Sources */,
