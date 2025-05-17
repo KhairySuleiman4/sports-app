@@ -22,7 +22,7 @@ class SportsLeaguesPresenter {
             print("Sport name is nil")
             return
         }
-        networkManager.fetchDataFromJSON(sport: sportName) { [weak self] res in
+        networkManager.fetchLeagues(sport: sportName) { [weak self] res in
             guard let self = self else { return }
             self.sports = res?.result ?? []
             DispatchQueue.main.async {

@@ -76,7 +76,14 @@ class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITab
             return 10
         }
         
-        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
+            let leaguesDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as! LeagueDetailsCollectionViewController
+        //        sportLeaguesViewController.sportName = sports[indexPath.row]
+            leaguesDetailsViewController.sport = sportName!
+            leaguesDetailsViewController.leagueId = sport[indexPath.row].leagueKey
+            self.navigationController?.pushViewController(leaguesDetailsViewController, animated: true)
+        }
         
     }
 
