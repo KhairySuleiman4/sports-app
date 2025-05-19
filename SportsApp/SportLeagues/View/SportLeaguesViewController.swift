@@ -68,6 +68,7 @@ class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITab
         
         return cell
     }
+    
     func didTapFavoriteButton(in cell: LeagueCell) {
         guard let indexPath = leaguesTable.indexPath(for: cell) else { return }
         let sportItem = sport[indexPath.row]
@@ -79,6 +80,7 @@ class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITab
         
         saveLeagueToFavorites(name: sportItem.leagueName!, imageData: imageData)
     }
+    
     func saveLeagueToFavorites(name: String, imageData: Data) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -108,5 +110,14 @@ class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITab
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+               
+               let leaguesDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as! LeagueDetailsCollectionViewController
+           //        sportLeaguesViewController.sportName = sports[indexPath.row]
+               leaguesDetailsViewController.sport = sportName!
+               leaguesDetailsViewController.leagueId = sport[indexPath.row].leagueKey
+               self.navigationController?.pushViewController(leaguesDetailsViewController, animated: true)
     }
 }

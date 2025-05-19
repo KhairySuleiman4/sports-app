@@ -50,10 +50,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
                 guard let self = self else { return nil }
                 
                 switch sectionIndex {
-                case 0:
-                    return self.drawLatestMatchesSection()
-                case 1:
-                    return self.drawUpcomingMatchesSection()
+                case 0, 1:
+                    return self.drawEventSection()
                 case 2:
                     return self.drawTeamsSection()
                 default:
@@ -90,7 +88,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         
             if indexPath.section == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventIdentifier, for: indexPath) as! EventCell
-                if let event = presenter.getLatestEvent(at: indexPath.row) {
+                if let event = presenter.getUpcomingEvent(at: indexPath.row) {
                     cell.firstTeamName.text = event.eventHomeTeam
                     cell.secondTeamName.text = event.eventAwayTeam
                     cell.firstTeamImg.sd_setImage(with: URL(string: event.homeTeamLogo ?? ""), placeholderImage: UIImage(named: "placeholder"))
@@ -100,7 +98,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
                 
             } else if indexPath.section == 1 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventIdentifier, for: indexPath) as! EventCell
-                if let event = presenter.getUpcomingEvent(at: indexPath.row) {
+                if let event = presenter.getLatestEvent(at: indexPath.row) {
                     cell.firstTeamName.text = event.eventHomeTeam
                     cell.secondTeamName.text = event.eventAwayTeam
                     cell.firstTeamImg.sd_setImage(with: URL(string: event.homeTeamLogo ?? ""), placeholderImage: UIImage(named: "placeholder"))
@@ -140,7 +138,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         return section
     }
     
-    private func drawUpcomingMatchesSection() -> NSCollectionLayoutSection {
+    private func drawEventSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -156,20 +154,20 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
 
     }
     
-    private func drawLatestMatchesSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(0.2))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        section.interGroupSpacing = 10
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-        return section
-
-    }
+//    private func drawLatestMatchesSection() -> NSCollectionLayoutSection {
+//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//        
+//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(0.2))
+//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//        
+//        let section = NSCollectionLayoutSection(group: group)
+//        section.orthogonalScrollingBehavior = .continuous
+//        section.interGroupSpacing = 10
+//        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+//        return section
+//
+//    }
 
     
     

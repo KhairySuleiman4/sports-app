@@ -65,6 +65,9 @@ class LeagueDetailsPresenter {
             
             if let eventsResponse = result {
                 self.upcomingEvents = eventsResponse.result ?? []
+                for event in self.upcomingEvents {
+                    print("Upcoming Event: \(event.eventHomeTeam ?? "Unknown") vs \(event.eventAwayTeam ?? "Unknown")\n")
+                }
                 self.view?.reloadData()
             } else {
                 self.view?.showError(message: "Failed to load upcoming events")
@@ -89,6 +92,9 @@ class LeagueDetailsPresenter {
             
             if let eventsResponse = result {
                 self.latestEvents = eventsResponse.result ?? []
+                for event in self.upcomingEvents {
+                    print("latest Event: \(event.eventHomeTeam ?? "Unknown") vs \(event.eventAwayTeam ?? "Unknown")\n")
+                }
                 self.view?.reloadData()
             } else {
                 self.view?.showError(message: "Failed to load latest events")
