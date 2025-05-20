@@ -17,8 +17,10 @@ protocol NetworkProtocol: AnyObject {
 class NetworkManager: NetworkProtocol {
     
     func fetchLeagueFixtures(sport: String, leagueid: Int, from: String, to: String, completionHandler: @escaping (EventResponse?) -> Void) {
-        let urlString = "\(ApiStrings.baseURL)\(sport.lowercased())/?met=\(ApiStrings.fixture)&APIkey=\(ApiStrings.apiKey)&from=\(from)&to=\(to)&leagueId=\(leagueid)"
-        
+        var urlString = "\(ApiStrings.baseURL)\(sport.lowercased())/?met=\(ApiStrings.fixture)&APIkey=\(ApiStrings.apiKey)&from=\(from)&to=\(to)&leagueId=\(leagueid)"
+        if sport.lowercased() == "tennis" {
+            urlString = "\(ApiStrings.baseURL)\(sport.lowercased())/?met=\(ApiStrings.fixture)&APIkey=\(ApiStrings.apiKey)&from=\(from)&to=\(to)&league_key=\(leagueid)"
+        }
         AF.request(urlString).responseDecodable(of: EventResponse.self) { response in
             switch response.result {
             case .success(let eventResult):

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EventsHeader: UICollectionReusableView {
+internal class EventsHeader: UICollectionReusableView {
 
     @IBOutlet weak var EventsHeaderLable: UILabel!
     /*
