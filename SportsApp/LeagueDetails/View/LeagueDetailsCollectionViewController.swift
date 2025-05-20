@@ -22,6 +22,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
     private let teamsHeaderIdentifier = "TeamsHeader"
     var sport : String = ""
     var leagueId : Int = 0
+    let blueColor = UIColor(red: 32/255, green: 72/255, blue: 209/255, alpha: 0.1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +121,17 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
                 ofKind: kind,
                 withReuseIdentifier: teamsHeaderIdentifier,
                 for: indexPath) as! TeamsHeader
+            
+           let bottomBorder = CALayer()
+            bottomBorder.frame = CGRect(x: 0, y: headerView.frame.size.height - 1, width: headerView.frame.size.width, height: 1.0)
+            bottomBorder.backgroundColor = blueColor.cgColor
+            headerView.layer.addSublayer(bottomBorder)
+            
+            // Remove other styling
+            headerView.layer.cornerRadius = 0
+            headerView.layer.borderWidth = 0
+            headerView.clipsToBounds = true
+            
             return headerView
         }
     }
@@ -209,12 +221,43 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         if sport.lowercased() == "tennis" {
             cell.firstTeamName.text = event.firstPlayer
             cell.secondTeamName.text = event.secondPlayer
+            cell.firstTeamImg.image = UIImage(named: "avatar")
+            
+            cell.firstTeamImg.contentMode = .scaleAspectFill
+            cell.firstTeamImg.layer.cornerRadius = cell.firstTeamImg.frame.size.width / 2
+            cell.firstTeamImg.layer.borderWidth = 1.0
+            cell.firstTeamImg.layer.borderColor = blueColor.cgColor
+            cell.firstTeamImg.clipsToBounds = true
+            
+           
+            cell.secondTeamImg.image = UIImage(named: "avatar")
+            cell.secondTeamImg.contentMode = .scaleAspectFill
+            cell.secondTeamImg.layer.cornerRadius = cell.secondTeamImg.frame.size.width / 2
+            cell.secondTeamImg.layer.borderWidth = 1.0
+            cell.secondTeamImg.layer.borderColor = blueColor.cgColor
+            cell.secondTeamImg.clipsToBounds = true
+            
         } else {
             cell.firstTeamName.text = event.eventHomeTeam
             cell.secondTeamName.text = event.eventAwayTeam
+            cell.firstTeamImg.sd_setImage(with: URL(string: event.homeTeamLogo ?? ""), placeholderImage: UIImage(named: "placeholder"))
+            cell.secondTeamImg.sd_setImage(with: URL(string: event.awayTeamLogo ?? ""), placeholderImage: UIImage(named: "placeholder"))
         }
-        cell.firstTeamImg.sd_setImage(with: URL(string: event.homeTeamLogo ?? ""), placeholderImage: UIImage(named: "placeholder"))
-        cell.secondTeamImg.sd_setImage(with: URL(string: event.awayTeamLogo ?? ""), placeholderImage: UIImage(named: "placeholder"))
+        
+        cell.matchScore.text = event.eventFinalResult
+        
+        
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.systemGray5.cgColor
+        cell.backgroundColor = blueColor
+        cell.layer.cornerRadius = 8.0
+        cell.clipsToBounds = false
+        
+        
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+        cell.layer.shadowRadius = 4
+        cell.layer.shadowOpacity = 0.2
     }
 
     private func configureTeamCell(cell: TeamCell, with team: Total) {
@@ -246,38 +289,19 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
     private func drawUpEventSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.2))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85), heightDimension: .fractionalHeight(0.2))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
+        section.orthogonalScrollingBehavior = .groupPagingCentered
         section.interGroupSpacing = 10
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
         
         return section
-
     }
     
-//    private func drawLatestMatchesSection() -> NSCollectionLayoutSection {
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//
-//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.2))
-//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//
-//        let section = NSCollectionLayoutSection(group: group)
-//        section.orthogonalScrollingBehavior = .continuous
-//        section.interGroupSpacing = 10
-//        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-//        return section
-//
-//    }
-
-    
-    
-    
-
     // MARK: UICollectionViewDelegate
 
     /*
