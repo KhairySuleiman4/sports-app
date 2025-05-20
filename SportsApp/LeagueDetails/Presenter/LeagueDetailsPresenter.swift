@@ -20,6 +20,7 @@ class LeagueDetailsPresenter {
     private var latestEvents: [EventModel] = []
     private let sport: String
     private let leagueId: Int
+    let currentDate = Date()
     
     init(view: LeagueDetailsView, networkManager: NetworkProtocol = NetworkManager(), sport: String, leagueId: Int) {
         self.view = view
@@ -51,7 +52,7 @@ class LeagueDetailsPresenter {
     }
     
     private func fetchUpcomingEvents() {
-        let currentDate = Date()
+        
         let futureDate = Calendar.current.date(byAdding: .day, value: 3, to: currentDate)!
         
         let dateFormatter = DateFormatter()
@@ -64,9 +65,20 @@ class LeagueDetailsPresenter {
             guard let self = self else { return }
             
             if let eventsResponse = result {
-                self.upcomingEvents = eventsResponse.result ?? []
+                let allEvents = eventsResponse.result ?? []
+                
+                self.upcomingEvents = allEvents.filter { $0.eventFinalResult == "-" }
+                
+                let completedEvents = allEvents.filter { $0.eventFinalResult != "-" }
+                self.latestEvents.append(contentsOf: completedEvents)
+                
+                self.latestEvents.sort {
+                    ($0.eventDate ?? "") > ($1.eventDate ?? "")
+                }
+                
                 for event in self.upcomingEvents {
                     print("Upcoming Event: \(event.eventHomeTeam ?? "Unknown") vs \(event.eventAwayTeam ?? "Unknown")\n")
+                    print("Score: \(event.eventFinalResult ?? "Unknown")\n")
                 }
                 self.view?.reloadData()
             } else {
@@ -78,7 +90,7 @@ class LeagueDetailsPresenter {
     }
         
     private func fetchLatestEvents() {
-        let currentDate = Date()
+        
         let pastDate = Calendar.current.date(byAdding: .day, value: -3, to: currentDate)!
         
         let dateFormatter = DateFormatter()
@@ -91,9 +103,14 @@ class LeagueDetailsPresenter {
             guard let self = self else { return }
             
             if let eventsResponse = result {
-                self.latestEvents = eventsResponse.result ?? []
-                for event in self.upcomingEvents {
+                let allEvents = eventsResponse.result ?? []
+
+                let completedEvents = allEvents.filter { $0.eventFinalResult != "-" }
+                
+                self.latestEvents.append(contentsOf: completedEvents)
+                for event in self.latestEvents {
                     print("latest Event: \(event.eventHomeTeam ?? "Unknown") vs \(event.eventAwayTeam ?? "Unknown")\n")
+                    print("Score: \(event.eventFinalResult ?? "Unknown")\n")
                 }
                 self.view?.reloadData()
             } else {
