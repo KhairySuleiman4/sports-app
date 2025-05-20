@@ -72,52 +72,47 @@ class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITab
     func didTapFavoriteButton(in cell: LeagueCell) {
         guard let indexPath = leaguesTable.indexPath(for: cell) else { return }
         let sportItem = sport[indexPath.row]
-        
-        
+
         guard let image = cell.leagueImage.image,
-              let imageData = image.pngData() else { return }
+              let imageData = image.pngData() else {
+            print("Error: No image data available")
+            return
+        }
+
+        let sportType = sportName?.lowercased() ?? "football"
         
-        
-        saveLeagueToFavorites(name: sportItem.leagueName!, imageData: imageData)
-    }
-    
-    func saveLeagueToFavorites(name: String, imageData: Data) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "SportsLeagues", in: context)!
-        let league = NSManagedObject(entity: entity, insertInto: context)
-        
-        league.setValue(name, forKey: "leagueName")
-        league.setValue(imageData, forKey: "leagueImage")
-        
-        do {
-            try context.save()
-            print("Saved successfully")
-        } catch {
-            print("Failed to save: \(error)")
+        let isSaved = sportPresenter?.saveLeagueToFavorites(
+            id: sportItem.leagueKey,
+            name: sportItem.leagueName ?? "",
+            imageData: imageData,
+            sportType: sportType
+        ) ?? false
+
+        if !isSaved {
+            let alert = UIAlertController(title: "Attention", message: "League already exists", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(alert, animated: true)
         }
     }
     
-    
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 55
+        }
+        func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+            10
+        }
+        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 10
+        }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
+            let leaguesDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as! LeagueDetailsCollectionViewController
+            //        sportLeaguesViewController.sportName = sports[indexPath.row]
+            leaguesDetailsViewController.sport = sportName!
+            leaguesDetailsViewController.leagueId = sport[indexPath.row].leagueKey
+            self.navigationController?.pushViewController(leaguesDetailsViewController, animated: true)
+        }
     }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        10
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-               
-               let leaguesDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as! LeagueDetailsCollectionViewController
-           //        sportLeaguesViewController.sportName = sports[indexPath.row]
-               leaguesDetailsViewController.sport = sportName!
-               leaguesDetailsViewController.leagueId = sport[indexPath.row].leagueKey
-               self.navigationController?.pushViewController(leaguesDetailsViewController, animated: true)
-    }
-}
+
+
