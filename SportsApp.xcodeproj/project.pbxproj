@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04929D782DDD471B006A5CB1 /* SportsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04929D772DDD471B006A5CB1 /* SportsAppTests.swift */; };
+		04929D7F2DDD474B006A5CB1 /* FakeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04929D7E2DDD474B006A5CB1 /* FakeNetwork.swift */; };
+		04929D822DDD4841006A5CB1 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 04929D812DDD4841006A5CB1 /* SDWebImage */; };
 		04C0AF2E2DDA4895004AA71F /* TeamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0AF2D2DDA4895004AA71F /* TeamDetailsViewController.swift */; };
 		04C0AF302DDA56A1004AA71F /* TeamDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0AF2F2DDA56A1004AA71F /* TeamDetailsTableViewCell.swift */; };
 		04C12DE52DD7284700A0E0AC /* FavouriteLeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12DE42DD7284700A0E0AC /* FavouriteLeaguesViewController.swift */; };
@@ -42,7 +45,20 @@
 		E87DEBC12DD927EB009862CA /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87DEBC02DD927EB009862CA /* EventResponse.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		04929D792DDD471B006A5CB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CF3255632DD52A91000CE58B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CF32556A2DD52A92000CE58B;
+			remoteInfo = SportsApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		04929D752DDD471A006A5CB1 /* SportsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04929D772DDD471B006A5CB1 /* SportsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppTests.swift; sourceTree = "<group>"; };
+		04929D7E2DDD474B006A5CB1 /* FakeNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetwork.swift; sourceTree = "<group>"; };
 		04C0AF2D2DDA4895004AA71F /* TeamDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewController.swift; sourceTree = "<group>"; };
 		04C0AF2F2DDA56A1004AA71F /* TeamDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		04C12DE42DD7284700A0E0AC /* FavouriteLeaguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteLeaguesViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +95,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		04929D722DDD471A006A5CB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04929D822DDD4841006A5CB1 /* SDWebImage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF3255682DD52A92000CE58B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -121,6 +145,22 @@
 			children = (
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		04929D762DDD471B006A5CB1 /* SportsAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				04929D772DDD471B006A5CB1 /* SportsAppTests.swift */,
+				04929D7E2DDD474B006A5CB1 /* FakeNetwork.swift */,
+			);
+			path = SportsAppTests;
+			sourceTree = "<group>";
+		};
+		04929D802DDD4841006A5CB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		04C0AF312DDA58D8004AA71F /* TeamDetails */ = {
@@ -216,7 +256,9 @@
 			isa = PBXGroup;
 			children = (
 				CF32556D2DD52A92000CE58B /* SportsApp */,
+				04929D762DDD471B006A5CB1 /* SportsAppTests */,
 				CF32556C2DD52A92000CE58B /* Products */,
+				04929D802DDD4841006A5CB1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				CF32556B2DD52A92000CE58B /* SportsApp.app */,
+				04929D752DDD471A006A5CB1 /* SportsAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,6 +360,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		04929D742DDD471A006A5CB1 /* SportsAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04929D7D2DDD471B006A5CB1 /* Build configuration list for PBXNativeTarget "SportsAppTests" */;
+			buildPhases = (
+				04929D712DDD471A006A5CB1 /* Sources */,
+				04929D722DDD471A006A5CB1 /* Frameworks */,
+				04929D732DDD471A006A5CB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04929D7A2DDD471B006A5CB1 /* PBXTargetDependency */,
+			);
+			name = SportsAppTests;
+			packageProductDependencies = (
+				04929D812DDD4841006A5CB1 /* SDWebImage */,
+			);
+			productName = SportsAppTests;
+			productReference = 04929D752DDD471A006A5CB1 /* SportsAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CF32556A2DD52A92000CE58B /* SportsApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CF3255822DD52A94000CE58B /* Build configuration list for PBXNativeTarget "SportsApp" */;
@@ -345,9 +409,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					04929D742DDD471A006A5CB1 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = CF32556A2DD52A92000CE58B;
+					};
 					CF32556A2DD52A92000CE58B = {
 						CreatedOnToolsVersion = 13.2;
 					};
@@ -371,11 +439,19 @@
 			projectRoot = "";
 			targets = (
 				CF32556A2DD52A92000CE58B /* SportsApp */,
+				04929D742DDD471A006A5CB1 /* SportsAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		04929D732DDD471A006A5CB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF3255692DD52A92000CE58B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -393,6 +469,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		04929D712DDD471A006A5CB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04929D782DDD471B006A5CB1 /* SportsAppTests.swift in Sources */,
+				04929D7F2DDD474B006A5CB1 /* FakeNetwork.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF3255672DD52A92000CE58B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -426,6 +511,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		04929D7A2DDD471B006A5CB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CF32556A2DD52A92000CE58B /* SportsApp */;
+			targetProxy = 04929D792DDD471B006A5CB1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		CF3255742DD52A92000CE58B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -446,6 +539,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		04929D7B2DDD471B006A5CB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ahmed.SportsAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SportsApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SportsApp";
+			};
+			name = Debug;
+		};
+		04929D7C2DDD471B006A5CB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ahmed.SportsAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SportsApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SportsApp";
+			};
+			name = Release;
+		};
 		CF3255802DD52A94000CE58B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -619,6 +756,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		04929D7D2DDD471B006A5CB1 /* Build configuration list for PBXNativeTarget "SportsAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04929D7B2DDD471B006A5CB1 /* Debug */,
+				04929D7C2DDD471B006A5CB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CF3255662DD52A91000CE58B /* Build configuration list for PBXProject "SportsApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -659,6 +805,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04929D812DDD4841006A5CB1 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04C12DF62DD799E100A0E0AC /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		04C12DF72DD799E100A0E0AC /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 04C12DF62DD799E100A0E0AC /* XCRemoteSwiftPackageReference "SDWebImage" */;
