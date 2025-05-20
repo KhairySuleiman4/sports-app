@@ -9,4 +9,7 @@ class EventCell: UICollectionViewCell {
     @IBOutlet weak var firstTeamName: UILabel!
     @IBOutlet weak var secondTeamImg: UIImageView!
     @IBOutlet weak var secondTeamName: UILabel!
+    
+    @IBOutlet weak var matchScore: UILabel!
 }
+

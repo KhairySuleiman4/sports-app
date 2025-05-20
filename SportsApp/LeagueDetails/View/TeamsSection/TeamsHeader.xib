@@ -16,31 +16,31 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="POS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBp-Wp-0Re">
-                    <rect key="frame" x="8" y="20" width="35.333333333333336" height="20"/>
+                    <rect key="frame" x="8" y="32.666666666666664" width="35.333333333333336" height="20"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8R-iq-kwg">
-                    <rect key="frame" x="232.66666666666666" y="20" width="11" height="21"/>
+                    <rect key="frame" x="232.66666666666666" y="32" width="11" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwV-tU-cRG">
-                    <rect key="frame" x="273.66666666666669" y="20" width="17" height="21"/>
+                    <rect key="frame" x="273.66666666666669" y="32" width="17" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Pts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P10-uL-cGB">
-                    <rect key="frame" x="320.66666666666669" y="20" width="27.333333333333314" height="21"/>
+                    <rect key="frame" x="320.66666666666669" y="32" width="27.333333333333314" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEt-4K-P5W">
-                    <rect key="frame" x="133.33333333333334" y="20" width="44.333333333333343" height="21"/>
+                    <rect key="frame" x="133.33333333333334" y="32" width="44.333333333333343" height="21"/>
                     <color key="tintColor" red="0.0" green="0.22352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="textColor"/>
@@ -51,16 +51,16 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <accessibility key="accessibilityConfiguration" identifier="TeamsHeader"/>
             <constraints>
-                <constraint firstItem="j8R-iq-kwg" firstAttribute="top" secondItem="wbF-iM-TXP" secondAttribute="top" constant="20" id="0Sa-wH-Vvp"/>
+                <constraint firstItem="zBp-Wp-0Re" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="8GX-Ji-CtT"/>
                 <constraint firstItem="hwV-tU-cRG" firstAttribute="leading" secondItem="j8R-iq-kwg" secondAttribute="trailing" constant="29.999999999999972" id="9L4-D6-AI6"/>
+                <constraint firstItem="GEt-4K-P5W" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="Enj-nu-cdm"/>
                 <constraint firstItem="P10-uL-cGB" firstAttribute="leading" secondItem="hwV-tU-cRG" secondAttribute="trailing" constant="30" id="HLf-sd-QSQ"/>
-                <constraint firstItem="P10-uL-cGB" firstAttribute="top" secondItem="wbF-iM-TXP" secondAttribute="top" constant="20" id="Ma4-hi-VDX"/>
+                <constraint firstItem="hwV-tU-cRG" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="Jl3-cS-HvD"/>
                 <constraint firstItem="zBp-Wp-0Re" firstAttribute="leading" secondItem="QXv-Ho-IAV" secondAttribute="leading" constant="8" id="OC3-5i-GoI"/>
-                <constraint firstItem="hwV-tU-cRG" firstAttribute="top" secondItem="wbF-iM-TXP" secondAttribute="top" constant="20" id="PHi-gH-Sdv"/>
-                <constraint firstItem="GEt-4K-P5W" firstAttribute="top" secondItem="wbF-iM-TXP" secondAttribute="top" constant="20" id="QHI-JZ-69C"/>
+                <constraint firstItem="P10-uL-cGB" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="QXQ-Ms-S4c"/>
+                <constraint firstItem="j8R-iq-kwg" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="RPn-cw-zlA"/>
                 <constraint firstItem="j8R-iq-kwg" firstAttribute="leading" secondItem="GEt-4K-P5W" secondAttribute="trailing" constant="55" id="Yl6-eN-Ize"/>
                 <constraint firstItem="GEt-4K-P5W" firstAttribute="leading" secondItem="zBp-Wp-0Re" secondAttribute="trailing" constant="90" id="fkR-k1-LTD"/>
-                <constraint firstItem="zBp-Wp-0Re" firstAttribute="top" secondItem="wbF-iM-TXP" secondAttribute="top" constant="20" id="p5k-MB-dcx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
