@@ -11,7 +11,9 @@ import Alamofire
 protocol NetworkProtocol: AnyObject {
     func fetchLeagues(sport: String, completionHandler: @escaping (SportResult?) -> Void)
     func fetchLeagueTeams(sport: String, leagueid: Int, completionHandler: @escaping (StandingResponse?) -> Void)
+    func fetchLeaguePlayers(completionHandler: @escaping (TennisPlayersResponse?) -> Void)
     func fetchLeagueFixtures(sport: String, leagueid: Int, from: String, to: String, completionHandler: @escaping (EventResponse?) -> Void)
+    func fetchTeamDetails(sport: String, teamId: Int, completionHandler: @escaping (TeamDetailsResponse?) -> Void)
 }
 
 class NetworkManager: NetworkProtocol {
@@ -46,6 +48,16 @@ class NetworkManager: NetworkProtocol {
         let urlString = URLBuilder.buildURL(sport: sport, endpoint: ApiStrings.fixture, queryParams: params)
         fetch(urlString: urlString, completionHandler: completionHandler)
     }
+    
+    func fetchTeamDetails(sport: String, teamId: Int, completionHandler: @escaping (TeamDetailsResponse?) -> Void) {
+        let urlString = URLBuilder.buildURL(sport: sport, endpoint: ApiStrings.teams, queryParams: ["teamId": String(teamId)])
+        fetch(urlString: urlString, completionHandler: completionHandler)
+    }
+    
+    func fetchLeaguePlayers(completionHandler: @escaping (TennisPlayersResponse?) -> Void) {
+        let urlString = URLBuilder.buildURL(sport: "Tennis", endpoint: ApiStrings.standing, queryParams: ["league": "ATP"])
+        fetch(urlString: urlString, completionHandler: completionHandler)
+    }
 }
 
 class URLBuilder {
@@ -64,4 +76,6 @@ class ApiStrings {
     static let leagues = "Leagues"
     static let standing = "Standings"
     static let fixture = "Fixtures"
+    static let teams = "Teams"
+    static let players = "Players"
 }

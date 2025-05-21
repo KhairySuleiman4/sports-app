@@ -36,19 +36,59 @@ class LeagueDetailsPresenter {
     }
     
     private func fetchTeams() {
-        let completion: (StandingResponse?) -> Void = { [weak self] result in
-            guard let self = self else { return }
-            
-            if let standingResponse = result,
-               let teams = standingResponse.result.total {
-                self.teams = teams
-                self.view?.reloadData()
-            } else {
-                self.view?.showError(message: "Failed to load teams data")
+        if sport.lowercased() == "tennis"{
+            networkManager.fetchLeaguePlayers{ [weak self] result in
+                guard let self = self else {
+                    return
+                }
+                
+                if let tennisPlayers = result?.result{
+                    self.teams = self.convertTennisPlayersToTotals(players: tennisPlayers)
+                    self.view?.reloadData()
+                } else {
+                    self.view?.showError(message: "Failed to load tennis players")
+                }
+            }
+        } else {
+            networkManager.fetchLeagueTeams(sport: sport, leagueid: leagueId) { [weak self] result in
+                guard let self = self else { return }
+                    
+                if let standingResponse = result, let teams = standingResponse.result.total {
+                    self.teams = teams
+                    self.view?.reloadData()
+                } else {
+                    self.view?.showError(message: "Failed to load teams data")
+                }
             }
         }
-        
-        networkManager.fetchLeagueTeams(sport: sport, leagueid: leagueId, completionHandler: completion)
+    }
+    
+    private func convertTennisPlayersToTotals(players: [TennisPlayer]) -> [Total] {
+        return players.enumerated().map { index, player in
+            return Total(
+                standingPlace: Int(player.place) ?? (index + 1),
+                standingPlaceType: "",
+                standingTeam: player.player,
+                standingP: 0,
+                standingW: 0,
+                standingD: 0,
+                standingL: 0,
+                standingF: 0,
+                standingA: 0,
+                standingGD: 0,
+                standingPTS: Int(player.points) ?? 0,
+                teamKey: index,
+                leagueKey: leagueId,
+                leagueSeason: "",
+                leagueRound: "",
+                standingUpdated: "",
+                fkStageKey: 0,
+                stageName: "",
+                teamLogo: "",
+                standingLP: 0,
+                standingWP: 0
+            )
+        }
     }
     
     private func fetchUpcomingEvents() {
