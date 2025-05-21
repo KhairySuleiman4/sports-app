@@ -263,11 +263,25 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
     private func configureTeamCell(cell: TeamCell, with team: Total) {
         cell.teamName.text = team.standingTeam
         cell.index.text = "\(team.standingPlace ?? 0)"
-        cell.teamPoints.text = "\(team.standingPTS ?? 0)"
-        cell.teamWins.text = "\(team.standingW ?? 0)"
-        cell.teamPts.text = "\(team.standingPTS ?? 0)"
-        let url = URL(string: team.teamLogo ?? "")
-        cell.teamLogo?.sd_setImage(with: url, placeholderImage: UIImage(named: "Football"))
+        if sport.lowercased() == "tennis" {
+            cell.teamPoints.text = "\(team.standingPTS ?? 0)"
+                
+            cell.teamWins.isHidden = true
+            cell.teamPts.isHidden = true
+            cell.teamLogo?.image = UIImage(named: "avatar")
+        } else {
+            cell.teamPoints.text = "\(team.standingPTS ?? 0)"
+            cell.teamWins.text = "\(team.standingW ?? 0)"
+            cell.teamPts.text = "\(team.standingPTS ?? 0)"
+            cell.teamWins.isHidden = false
+            cell.teamPts.isHidden = false
+
+            if let logoUrlString = team.teamLogo, !logoUrlString.isEmpty, let logoUrl = URL(string: logoUrlString) {
+                cell.teamLogo?.sd_setImage(with: logoUrl, placeholderImage: UIImage(named: "Football"))
+            } else {
+                cell.teamLogo?.image = UIImage(named: "Football")
+            }
+        }
     }
     
     private func drawTeamsSection() -> NSCollectionLayoutSection {
@@ -302,35 +316,53 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         return section
     }
     
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sectionType = getAvailableSections()[indexPath.section]
+        
+        switch sectionType {
+        case .teams:
+            if sport.lowercased() == "tennis" {
+                if let player = presenter.getTeam(at: indexPath.row) {
+                    showAlert(
+                        title: "Tennis Player Info",
+                        message: "Detailed statistics for \(player.standingTeam ?? "this player") are not available."
+                    )
+                } else {
+                    showAlert(
+                        message: "Detailed statistics for tennis players are not available."
+                    )
+                }
+                return
+            }
+            
+            if let team = presenter.getTeam(at: indexPath.row) {
+                navigateToTeamDetails(with: team)
+            }
+        default:
+            break
+        }
     }
-    */
 
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
+    private func navigateToTeamDetails(with team: Total) {
+        
+        if let teamDetailsVC = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController {
+            teamDetailsVC.teamId = team.teamKey
+            teamDetailsVC.sport = self.sport
+            self.navigationController?.pushViewController(teamDetailsVC, animated: true)
+        }
     }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    private func showAlert(title: String? = nil, message: String) {
+        let alertController = UIAlertController(
+            title: title ?? "Information",
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true)
     }
-    */
-
+    
 }

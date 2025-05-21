@@ -8,7 +8,7 @@
 import UIKit
 
 class TeamDetailsTableViewCell: UITableViewCell {
-    @IBOutlet weak var playNumber: UILabel!
+    @IBOutlet weak var playerNumber: UILabel!
     
     @IBOutlet weak var playerPosition: UILabel!
     @IBOutlet weak var playerName: UILabel!
