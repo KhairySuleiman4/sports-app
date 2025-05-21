@@ -119,6 +119,59 @@ class NetworkManagerTests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
     }
+    func testFetchLeaguePlayersSuccess() {
+        fakeNetwork = FakeNetwork(shouldReturnError: false)
+        let expectation = self.expectation(description: "Fetch Tennis Players API")
+        
+        fakeNetwork.fetchLeaguePlayers { result in
+            XCTAssertNotNil(result, "Players response should not be nil")
+            XCTAssertEqual(result?.result.count, 1, "Should return 1 player")
+            XCTAssertEqual(result?.result.first?.player, "Novak Djokovic", "Player should be Novak Djokovic")
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testFetchLeaguePlayersFailure() {
+        fakeNetwork = FakeNetwork(shouldReturnError: true)
+        let expectation = self.expectation(description: "Fetch Tennis Players API Failure")
+        
+        fakeNetwork.fetchLeaguePlayers { result in
+            XCTAssertNil(result, "Players response should be nil on error")
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    func testFetchTeamDetailsSuccess() {
+        fakeNetwork = FakeNetwork(shouldReturnError: false)
+        let expectation = self.expectation(description: "Fetch Team Details API")
+        
+        fakeNetwork.fetchTeamDetails(sport: "football", teamId: 101) { result in
+            XCTAssertNotNil(result, "Team details response should not be nil")
+            XCTAssertEqual(result?.result.count, 1, "Should return 1 team")
+            XCTAssertEqual(result?.result.first?.teamName, "Manchester United", "Team name should be Manchester United")
+            XCTAssertEqual(result?.result.first?.players.first?.playerName, "Cristiano Ronaldo", "Player should be Cristiano Ronaldo")
+            XCTAssertEqual(result?.result.first?.coaches.first?.coachName, "Erik ten Hag", "Coach name should be Erik ten Hag")
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testFetchTeamDetailsFailure() {
+        fakeNetwork = FakeNetwork(shouldReturnError: true)
+        let expectation = self.expectation(description: "Fetch Team Details API Failure")
+        
+        fakeNetwork.fetchTeamDetails(sport: "football", teamId: 101) { result in
+            XCTAssertNil(result, "Team details response should be nil on error")
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
     
    
 }

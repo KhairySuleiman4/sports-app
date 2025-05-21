@@ -77,7 +77,20 @@ class FakeNetwork: NetworkProtocol {
             secondPlayer: nil
         )
     ])
-    
+    let mockTennisPlayersResponse = TennisPlayersResponse(result: [
+        TennisPlayer(place: "1", player: "Novak Djokovic", country: "Serbia", points: "12000")
+    ])
+
+    let mockTeamDetailsResponse = TeamDetailsResponse(result: [
+        TeamDetails(teamName: "Manchester United", teamLogo: "https://example.com/man_utd_logo.png",
+                    players: [
+                        Player(playerImage: "https://example.com/player1.png", playerName: "Cristiano Ronaldo", playerNumber: "7", playerType: "Forward", playerRating: "9.5")
+                    ],
+                    coaches: [
+                        Coach(coachName: "Erik ten Hag")
+                    ])
+    ])
+
     enum ResponseError: Error {
         case apiError
     }
@@ -109,4 +122,20 @@ class FakeNetwork: NetworkProtocol {
             completionHandler(mockFixturesResponse)
         }
     }
+    func fetchLeaguePlayers(completionHandler: @escaping (TennisPlayersResponse?) -> Void) {
+        if shouldReturnError {
+            completionHandler(nil)
+        } else {
+            completionHandler(mockTennisPlayersResponse)
+        }
+    }
+
+    func fetchTeamDetails(sport: String, teamId: Int, completionHandler: @escaping (TeamDetailsResponse?) -> Void) {
+        if shouldReturnError {
+            completionHandler(nil)
+        } else {
+            completionHandler(mockTeamDetailsResponse)
+        }
+    }
+
 }

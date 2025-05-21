@@ -1,46 +1,36 @@
 import UIKit
 import CoreData
+import Network
 
-class FavouriteLeaguesViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
+class FavouriteLeaguesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var favTableView: UITableView!
-    /*var leagues = [
-        "Premier League",
-        "La Liga",
-        "Serie A",
-        "Bundesliga",
-        "Ligue 1",
-        "Eredivisie",
-        "Primeira Liga",
-        "MLS",
-        "Brasileirão",
-        "J1 League",
-        "Ligue 1",
-        "Eredivisie",
-        "Primeira Liga",
-        "MLS",
-        "Brasileirão",
-    ]*/
     @IBOutlet weak var favSegment: UISegmentedControl!
     var favoriteLeagues: [NSManagedObject] = []
+    
+    let presenter = FavouriteLeaguesPresenter()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         favTableView.delegate = self
         favTableView.dataSource = self
         fetchFavoriteLeagues()
-        // Do any additional setup after loading the view.
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchFavoriteLeagues()
     }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        favoriteLeagues.count
+        return favoriteLeagues.count
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fav_league_cell", for: indexPath) as! FavLeagueCell
         
@@ -52,9 +42,24 @@ class FavouriteLeaguesViewController: UIViewController ,UITableViewDataSource,UI
 
         return cell
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let league = favoriteLeagues[indexPath.row]
+        let leagueId = league.value(forKey: "leagueId") as? Int ?? 0
+        let sportType = league.value(forKey: "sportType") as? String ?? "football"
+
+        if presenter.isInternetAvailable() {
+            if let leaguesDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController {
+                leaguesDetailsViewController.sport = sportType
+                leaguesDetailsViewController.leagueId = leagueId
+                navigationController?.pushViewController(leaguesDetailsViewController, animated: true)
+            }
+        } else {
+            showNoInternetAlert()
+        }
     }
+
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let leagueToDelete = favoriteLeagues[indexPath.row]
@@ -75,8 +80,6 @@ class FavouriteLeaguesViewController: UIViewController ,UITableViewDataSource,UI
                     try context.save()
                     self.favoriteLeagues.remove(at: indexPath.row)
                     tableView.deleteRows(at: [indexPath], with: .fade)
-                    
-                  
                 } catch {
                     print("Failed to delete: \(error)")
                 }
@@ -89,9 +92,11 @@ class FavouriteLeaguesViewController: UIViewController ,UITableViewDataSource,UI
     @IBAction func segmentChanged(_ sender: Any) {
         fetchFavoriteLeagues()
     }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+
     func fetchFavoriteLeagues() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -117,24 +122,17 @@ class FavouriteLeaguesViewController: UIViewController ,UITableViewDataSource,UI
         do {
             favoriteLeagues = try context.fetch(fetchRequest)
             favTableView.reloadData()
-        } catch{
+        } catch {
             print("error \(error)")
         }
     }
-
-
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func showNoInternetAlert() {
+        let alert = UIAlertController(
+            title: "No Internet Connection",
+            message: "Please check your internet connection and try again.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
-    */
-
 }
-

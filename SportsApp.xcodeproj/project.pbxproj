@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		04929D782DDD471B006A5CB1 /* SportsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04929D772DDD471B006A5CB1 /* SportsAppTests.swift */; };
 		04929D7F2DDD474B006A5CB1 /* FakeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04929D7E2DDD474B006A5CB1 /* FakeNetwork.swift */; };
-		04929D822DDD4841006A5CB1 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 04929D812DDD4841006A5CB1 /* SDWebImage */; };
+		04929D822DDD4841006A5CB1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		04A6A7952DDE3A9B00DB1E21 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 04A6A7942DDE3A9B00DB1E21 /* SDWebImage */; };
+		04A6A79B2DDE4A5300DB1E21 /* FavouriteLeaguesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6A79A2DDE4A5300DB1E21 /* FavouriteLeaguesPresenter.swift */; };
 		04C0AF2E2DDA4895004AA71F /* TeamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0AF2D2DDA4895004AA71F /* TeamDetailsViewController.swift */; };
 		04C0AF302DDA56A1004AA71F /* TeamDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0AF2F2DDA56A1004AA71F /* TeamDetailsTableViewCell.swift */; };
 		04C12DE52DD7284700A0E0AC /* FavouriteLeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C12DE42DD7284700A0E0AC /* FavouriteLeaguesViewController.swift */; };
@@ -62,6 +64,7 @@
 		04929D752DDD471A006A5CB1 /* SportsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04929D772DDD471B006A5CB1 /* SportsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppTests.swift; sourceTree = "<group>"; };
 		04929D7E2DDD474B006A5CB1 /* FakeNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetwork.swift; sourceTree = "<group>"; };
+		04A6A79A2DDE4A5300DB1E21 /* FavouriteLeaguesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteLeaguesPresenter.swift; sourceTree = "<group>"; };
 		04C0AF2D2DDA4895004AA71F /* TeamDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewController.swift; sourceTree = "<group>"; };
 		04C0AF2F2DDA56A1004AA71F /* TeamDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		04C12DE42DD7284700A0E0AC /* FavouriteLeaguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteLeaguesViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04929D822DDD4841006A5CB1 /* SDWebImage in Frameworks */,
+				04A6A7952DDE3A9B00DB1E21 /* SDWebImage in Frameworks */,
+				04929D822DDD4841006A5CB1 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +154,7 @@
 		04546C082DDA807A0073F8F7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				04A6A79A2DDE4A5300DB1E21 /* FavouriteLeaguesPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -392,7 +397,7 @@
 			);
 			name = SportsAppTests;
 			packageProductDependencies = (
-				04929D812DDD4841006A5CB1 /* SDWebImage */,
+				04A6A7942DDE3A9B00DB1E21 /* SDWebImage */,
 			);
 			productName = SportsAppTests;
 			productReference = 04929D752DDD471A006A5CB1 /* SportsAppTests.xctest */;
@@ -505,6 +510,7 @@
 				E84970952DD8FD67008964EA /* LeagueDetailsPresenter.swift in Sources */,
 				E84970932DD8F525008964EA /* StandingModel.swift in Sources */,
 				04C12DEF2DD7921700A0E0AC /* Sport.swift in Sources */,
+				04A6A79B2DDE4A5300DB1E21 /* FavouriteLeaguesPresenter.swift in Sources */,
 				CF32556F2DD52A92000CE58B /* AppDelegate.swift in Sources */,
 				CF83F14A2DDD4F47001FBB7F /* TeamDetailsPresenter.swift in Sources */,
 				E879B7252DD7F6E400C7D402 /* EventCell.swift in Sources */,
@@ -825,6 +831,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04A6A7942DDE3A9B00DB1E21 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF83F1432DDD3CEB001FBB7F /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		CF83F1442DDD3CEB001FBB7F /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF83F1432DDD3CEB001FBB7F /* XCRemoteSwiftPackageReference "SDWebImage" */;
