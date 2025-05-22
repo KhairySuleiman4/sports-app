@@ -30,6 +30,7 @@ class EventModel: Codable {
     var fkStageKey: Int?
     var stageName: String?
     var firstPlayer, secondPlayer: String?
+    var eventHomeTeamLogo, eventAwayTeamLogo: String?
 
     enum CodingKeys: String, CodingKey {
         case eventKey = "event_key"
@@ -63,6 +64,8 @@ class EventModel: Codable {
         case stageName = "stage_name"
         case firstPlayer = "event_first_player"
         case secondPlayer = "event_second_player"
+        case eventHomeTeamLogo = "event_home_team_logo"
+        case eventAwayTeamLogo = "event_away_team_logo"
     }
 
     init(eventKey: Int?, eventDate: String?, eventTime: String?, eventHomeTeam: String?, homeTeamKey: Int?, eventAwayTeam: String?, awayTeamKey: Int?, eventHalftimeResult: String?, eventFinalResult: String?, eventFtResult: String?, eventPenaltyResult: String?, eventStatus: String?, countryName: String?, leagueName: String?, leagueKey: Int?, leagueRound: String?, leagueSeason: String?, eventLive: String?, eventStadium: String?, eventReferee: String?, homeTeamLogo: String?, awayTeamLogo: String?, eventCountryKey: Int?, leagueLogo: String?, countryLogo: String?, eventHomeFormation: String?, eventAwayFormation: String?, fkStageKey: Int?, stageName: String?,

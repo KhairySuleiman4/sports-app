@@ -40,6 +40,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
                                 withReuseIdentifier: teamsHeaderIdentifier)
         
         collectionView.setCollectionViewLayout(createLayout(), animated: false)
+        collectionView.isUserInteractionEnabled = true
+        collectionView.allowsSelection = true
         configure(sport: sport, leagueId: leagueId)
         presenter.viewDidLoad()
 
@@ -218,41 +220,57 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
     }
     
     private func configureEventCell(cell: EventCell, with event: EventModel) {
-        if sport.lowercased() == "tennis" {
+        setupEventNames(cell: cell, event: event)
+        setupTeamImages(cell: cell, event: event)
+        applyEventCellStyle(cell: cell)
+    }
+
+    private func setupEventNames(cell: EventCell, event: EventModel) {
+        switch sport.lowercased() {
+        case "tennis":
             cell.firstTeamName.text = event.firstPlayer
             cell.secondTeamName.text = event.secondPlayer
-            cell.firstTeamImg.image = UIImage(named: "avatar")
-            
-            cell.firstTeamImg.contentMode = .scaleAspectFill
-            cell.firstTeamImg.layer.cornerRadius = cell.firstTeamImg.frame.size.width / 2
-            cell.firstTeamImg.layer.borderWidth = 1.0
-            cell.firstTeamImg.layer.borderColor = blueColor.cgColor
-            cell.firstTeamImg.clipsToBounds = true
-            
-           
-            cell.secondTeamImg.image = UIImage(named: "avatar")
-            cell.secondTeamImg.contentMode = .scaleAspectFill
-            cell.secondTeamImg.layer.cornerRadius = cell.secondTeamImg.frame.size.width / 2
-            cell.secondTeamImg.layer.borderWidth = 1.0
-            cell.secondTeamImg.layer.borderColor = blueColor.cgColor
-            cell.secondTeamImg.clipsToBounds = true
-            
-        } else {
+        default:
             cell.firstTeamName.text = event.eventHomeTeam
             cell.secondTeamName.text = event.eventAwayTeam
-            cell.firstTeamImg.sd_setImage(with: URL(string: event.homeTeamLogo ?? ""), placeholderImage: UIImage(named: "placeholder"))
-            cell.secondTeamImg.sd_setImage(with: URL(string: event.awayTeamLogo ?? ""), placeholderImage: UIImage(named: "placeholder"))
+        }
+        cell.matchScore.text = event.eventFinalResult
+    }
+
+    private func setupTeamImages(cell: EventCell, event: EventModel) {
+        switch sport.lowercased() {
+        case "tennis":
+            configureImageView(cell.firstTeamImg, defaultImage: "avatar")
+            configureImageView(cell.secondTeamImg, defaultImage: "avatar")
+        case "cricket":
+            configureImageView(cell.firstTeamImg, imageURL: event.eventHomeTeamLogo)
+            configureImageView(cell.secondTeamImg, imageURL: event.eventAwayTeamLogo)
+        default:
+            configureImageView(cell.firstTeamImg, imageURL: event.homeTeamLogo)
+            configureImageView(cell.secondTeamImg, imageURL: event.awayTeamLogo)
+        }
+    }
+
+    private func configureImageView(_ imageView: UIImageView, imageURL: String? = nil, defaultImage: String = "avatar") {
+        if let url = imageURL, !url.isEmpty {
+            imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: defaultImage))
+        } else {
+            imageView.image = UIImage(named: defaultImage)
         }
         
-        cell.matchScore.text = event.eventFinalResult
-        
-        
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = blueColor.cgColor
+        imageView.clipsToBounds = true
+    }
+
+    private func applyEventCellStyle(cell: EventCell) {
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor.systemGray5.cgColor
         cell.backgroundColor = blueColor
         cell.layer.cornerRadius = 8.0
         cell.clipsToBounds = false
-        
         
         cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -263,26 +281,29 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
     private func configureTeamCell(cell: TeamCell, with team: Total) {
         cell.teamName.text = team.standingTeam
         cell.index.text = "\(team.standingPlace ?? 0)"
-        if sport.lowercased() == "tennis" {
-            cell.teamPoints.text = "\(team.standingPTS ?? 0)"
-                
-            cell.teamWins.isHidden = true
-            cell.teamPts.isHidden = true
-            cell.teamLogo?.image = UIImage(named: "avatar")
-        } else {
-            cell.teamPoints.text = "\(team.standingPTS ?? 0)"
-            cell.teamWins.text = "\(team.standingW ?? 0)"
-            cell.teamPts.text = "\(team.standingPTS ?? 0)"
-            cell.teamWins.isHidden = false
-            cell.teamPts.isHidden = false
+        
 
-            if let logoUrlString = team.teamLogo, !logoUrlString.isEmpty, let logoUrl = URL(string: logoUrlString) {
-                cell.teamLogo?.sd_setImage(with: logoUrl, placeholderImage: UIImage(named: "Football"))
-            } else {
-                cell.teamLogo?.image = UIImage(named: "Football")
-            }
+        let stats: [(label: UILabel?, value: Int?)] = [
+            (cell.teamPoints, team.standingP),
+            (cell.teamWins, team.standingW),
+            (cell.teamPts, team.standingPTS)
+        ]
+        
+        stats.forEach { stat in
+            stat.label?.text = (stat.value == nil || stat.value == 0) ? "-" : "\(stat.value!)"
         }
+        
+
+        if let logoUrlString = team.teamLogo,
+           !logoUrlString.isEmpty,
+           let logoUrl = URL(string: logoUrlString) {
+            cell.teamLogo?.sd_setImage(with: logoUrl, placeholderImage: UIImage(named: "avatar"))
+        } else {
+            cell.teamLogo?.image = UIImage(named: "avatar")
+        }
+    
     }
+
     
     private func drawTeamsSection() -> NSCollectionLayoutSection {
         
@@ -305,7 +326,14 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85), heightDimension: .fractionalHeight(0.2))
+        // Adjust group width based on orientation
+        let isLandscape = UIScreen.main.bounds.width > UIScreen.main.bounds.height
+        let groupWidth: CGFloat = isLandscape ? 0.85 : 0.85
+        let groupHeight: CGFloat = isLandscape ? 0.6 : 0.2
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(groupWidth),
+            heightDimension: .fractionalHeight(groupHeight)
+        )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)

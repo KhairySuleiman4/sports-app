@@ -42,7 +42,7 @@ class NetworkManager: NetworkProtocol {
     
     func fetchLeagueFixtures(sport: String, leagueid: Int, from: String, to: String, completionHandler: @escaping (EventResponse?) -> Void) {
         var params = ["from": from, "to": to]
-        let idKey = sport.lowercased() == "tennis" ? "league_key" : "leagueId"
+        let idKey = (sport.lowercased() == "tennis" || sport.lowercased() == "cricket") ? "league_key" : "leagueId"
         params[idKey] = String(leagueid)
         
         let urlString = URLBuilder.buildURL(sport: sport, endpoint: ApiStrings.fixture, queryParams: params)
