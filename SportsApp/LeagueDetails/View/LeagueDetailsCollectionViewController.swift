@@ -42,6 +42,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         collectionView.setCollectionViewLayout(createLayout(), animated: false)
         collectionView.isUserInteractionEnabled = true
         collectionView.allowsSelection = true
+        
+        
         configure(sport: sport, leagueId: leagueId)
         presenter.viewDidLoad()
 
@@ -124,12 +126,40 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
                 withReuseIdentifier: teamsHeaderIdentifier,
                 for: indexPath) as! TeamsHeader
             
+            let teamsCount = presenter.getTeamsCount()
+                for i in 0..<teamsCount {
+                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                        headerView.TeamLable.center.x = teamCell.teamName.center.x
+                    }
+                    
+                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                        headerView.PosLable.center.x = teamCell.index.center.x
+                    }
+                    
+                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                        headerView.PointsLable.center.x = teamCell.teamPoints.center.x
+                    }
+                    
+                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                        headerView.PtsLable.center.x = teamCell.teamPts.center.x
+                    }
+                    
+                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                        headerView.WinsLable.center.x = teamCell.teamWins.center.x
+                    }
+                }
+                
+                
+            
+            
+        
+            
            let bottomBorder = CALayer()
             bottomBorder.frame = CGRect(x: 0, y: headerView.frame.size.height - 1, width: headerView.frame.size.width, height: 1.0)
             bottomBorder.backgroundColor = blueColor.cgColor
             headerView.layer.addSublayer(bottomBorder)
             
-            // Remove other styling
+            
             headerView.layer.cornerRadius = 0
             headerView.layer.borderWidth = 0
             headerView.clipsToBounds = true
@@ -310,7 +340,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2), heightDimension: .absolute(75))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(75))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
@@ -326,9 +356,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
-        // Adjust group width based on orientation
         let isLandscape = UIScreen.main.bounds.width > UIScreen.main.bounds.height
-        let groupWidth: CGFloat = isLandscape ? 0.85 : 0.85
+        let groupWidth: CGFloat = isLandscape ? 0.85 : 0.9
         let groupHeight: CGFloat = isLandscape ? 0.6 : 0.2
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(groupWidth),
@@ -365,6 +394,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
             
             if let team = presenter.getTeam(at: indexPath.row) {
                 navigateToTeamDetails(with: team)
+                
             }
         default:
             break
@@ -377,6 +407,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
             teamDetailsVC.teamId = team.teamKey
             teamDetailsVC.sport = self.sport
             self.navigationController?.pushViewController(teamDetailsVC, animated: true)
+            teamDetailsVC.title = "Team Details"
         }
     }
     

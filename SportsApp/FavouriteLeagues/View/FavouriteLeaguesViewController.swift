@@ -9,18 +9,45 @@ class FavouriteLeaguesViewController: UIViewController, UITableViewDataSource, U
     var favoriteLeagues: [NSManagedObject] = []
     
     let presenter = FavouriteLeaguesPresenter()
-
+    
+    private let emptyStateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No favorites yet!\nStart exploring to add your favorite leagues"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.font = .systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         favTableView.delegate = self
         favTableView.dataSource = self
         fetchFavoriteLeagues()
+        setupEmptyStateLabel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchFavoriteLeagues()
+        favTableView.reloadData()
+    }
+    
+    private func setupEmptyStateLabel() {
+        view.addSubview(emptyStateLabel)
+        NSLayoutConstraint.activate([
+            emptyStateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyStateLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyStateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            emptyStateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
+    }
+    
+    private func updateUI() {
+        emptyStateLabel.isHidden = !favoriteLeagues.isEmpty
+        favTableView.isHidden = favoriteLeagues.isEmpty
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,33 +88,27 @@ class FavouriteLeaguesViewController: UIViewController, UITableViewDataSource, U
 
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let leagueToDelete = favoriteLeagues[indexPath.row]
-            let leagueName = leagueToDelete.value(forKey: "leagueName") as? String ?? "this league"
+            if editingStyle == .delete {
+                let leagueToDelete = favoriteLeagues[indexPath.row]
+                let leagueName = leagueToDelete.value(forKey: "leagueName") as? String ?? "this league"
 
-            let alert = UIAlertController(title: "Delete League", message: "Are you sure you want to remove \(leagueName) from your favorites?", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Delete League", message: "Are you sure you want to remove \(leagueName) from your favorites?", preferredStyle: .alert)
 
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+                    guard let self = self else { return }
+                    
+                    if self.presenter.deleteLeague(leagueToDelete) {
+                        self.favoriteLeagues.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        self.updateUI()
+                    }
+                })
 
-            alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
-                guard let self = self else { return }
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                let context = appDelegate.persistentContainer.viewContext
-                
-                context.delete(leagueToDelete)
-                
-                do {
-                    try context.save()
-                    self.favoriteLeagues.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                } catch {
-                    print("Failed to delete: \(error)")
-                }
-            })
-
-            present(alert, animated: true, completion: nil)
+                present(alert, animated: true)
+                favTableView.reloadData()
+            }
         }
-    }
 
     @IBAction func segmentChanged(_ sender: Any) {
         fetchFavoriteLeagues()
@@ -98,11 +119,6 @@ class FavouriteLeaguesViewController: UIViewController, UITableViewDataSource, U
     }
 
     func fetchFavoriteLeagues() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let context = appDelegate.persistentContainer.viewContext
-
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "SportsLeagues")
-
         let selectedSport: String
         switch favSegment.selectedSegmentIndex {
         case 0:
@@ -116,16 +132,12 @@ class FavouriteLeaguesViewController: UIViewController, UITableViewDataSource, U
         default:
             selectedSport = "football"
         }
-
-        fetchRequest.predicate = NSPredicate(format: "sportType == %@", selectedSport)
-
-        do {
-            favoriteLeagues = try context.fetch(fetchRequest)
-            favTableView.reloadData()
-        } catch {
-            print("error \(error)")
-        }
+        
+        favoriteLeagues = presenter.fetchLeagues(for: selectedSport)
+        updateUI()
+        favTableView.reloadData()
     }
+    
     private func showNoInternetAlert() {
         let alert = UIAlertController(
             title: "No Internet Connection",

@@ -5,114 +5,109 @@
 //  Created by Khairy on 16/05/2025.
 //
 
+
 import UIKit
 import SDWebImage
 import CoreData
-class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,LeagueCellDelegate {
-    
+
+protocol SportLeaguesViewProtocol: AnyObject {
+    func updateLeagues(_ leagues: [Sport])
+    func showError(title: String, message: String)
+}
+
+class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SportLeaguesViewProtocol, LeagueCellDelegate  {
     @IBOutlet weak var headerLabel: UILabel!
-    
     @IBOutlet weak var leaguesTable: UITableView!
     
-    var sport : [Sport] = []
+    private var leagues: [Sport] = [] {
+        didSet {
+            leaguesTable.reloadData()
+        }
+    }
     
-    var sportPresenter : SportsLeaguesPresenter?
-    var networkingManager : NetworkProtocol?
-    
-    
+    private var presenter: SportsLeaguesPresenterProtocol!
     var sportName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkingManager = NetworkManager()
-        sportPresenter = SportsLeaguesPresenter(networkManager: networkingManager!,sportLeaguesViewController: self)
-        headerLabel?.text = "\(sportName!) Leagues"
-        leaguesTable.delegate = self
-        leaguesTable.dataSource = self
-        sportPresenter?.fetchSportLeagues()
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        setupPresenter()
+        setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        leaguesTable.reloadData()
+    }
+    
+    private func setupPresenter() {
+        let networkManager = NetworkManager()
+        presenter = SportsLeaguesPresenter(networkManager: networkManager, view: self)
+        presenter.fetchSportLeagues(for: sportName)
+    }
+    
+    private func setupUI() {
+        headerLabel?.text = "\(sportName ?? "") Leagues"
+        leaguesTable.delegate = self
+        leaguesTable.dataSource = self
+    }
+    
+    private func navigateToLeagueDetails(with league: Sport) {
+        guard let detailsVC = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController else { return }
+        detailsVC.sport = sportName!
+        detailsVC.leagueId = league.leagueKey
+        detailsVC.title = "League Details"
+        navigationController?.pushViewController(detailsVC, animated: true)
+    }
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sport.count
+        return leagues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leagueCell", for: indexPath) as! LeagueCell
-        let sportItem = sport[indexPath.row]
-        
-        cell.leagueName.text = sportItem.leagueName
-        
+        let league = leagues[indexPath.row]
+        presenter.configureCell(cell, with: league)
         cell.delegate = self
-        cell.isFavorited = sportItem.isFavorite
-        
-        
-        if sportName?.lowercased() == "football", let logoString = sportItem.leagueLogo, let url = URL(string: logoString) {
-            cell.leagueImage?.sd_setImage(with: url, placeholderImage: UIImage(named: "Football"))
-        } else {
-            let placeholderImageName: String
-            switch sportName?.lowercased() {
-            case "tennis":
-                placeholderImageName = "Tennis"
-            case "cricket":
-                placeholderImageName = "Cricket"
-            case "basketball":
-                placeholderImageName = "Basketball"
-            default:
-                placeholderImageName = "Football"
-            }
-            cell.leagueImage?.image = UIImage(named: placeholderImageName)
-        }
-        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigateToLeagueDetails(with: leagues[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+
     func didTapFavoriteButton(in cell: LeagueCell) {
         guard let indexPath = leaguesTable.indexPath(for: cell) else { return }
-        let sportItem = sport[indexPath.row]
-
-        guard let image = cell.leagueImage.image,
-              let imageData = image.pngData() else {
-            print("Error: No image data available")
-            return
-        }
-
-        let sportType = sportName?.lowercased() ?? "football"
+        let league = leagues[indexPath.row]
         
-        let isSaved = sportPresenter?.saveLeagueToFavorites(
-            id: sportItem.leagueKey,
-            name: sportItem.leagueName ?? "",
-            imageData: imageData,
-            sportType: sportType
-        ) ?? false
-
-        if !isSaved {
-            let alert = UIAlertController(title: "Attention", message: "League already exists", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            present(alert, animated: true)
+        if presenter.isLeagueFavorite(id: league.leagueKey) {
+            presenter.handleFavoriteRemoval(for: league, cell: cell)
+        } else {
+            presenter.handleFavoriteAddition(for: league, cell: cell)
         }
     }
     
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 55
-        }
-        func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-            10
-        }
-        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 10
-        }
-        
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
-            let leaguesDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as! LeagueDetailsCollectionViewController
-            //        sportLeaguesViewController.sportName = sports[indexPath.row]
-            leaguesDetailsViewController.sport = sportName!
-            leaguesDetailsViewController.leagueId = sport[indexPath.row].leagueKey
-            self.navigationController?.pushViewController(leaguesDetailsViewController, animated: true)
-        }
+    
+    func updateLeagues(_ leagues: [Sport]) {
+        self.leagues = leagues
     }
-
-
+    
+    func showError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    
+}
