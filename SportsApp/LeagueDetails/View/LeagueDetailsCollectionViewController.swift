@@ -391,18 +391,18 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sectionType = getAvailableSections()[indexPath.section]
-        
+        var sportLowercased = sport.lowercased()
         switch sectionType {
         case .teams:
-            if sport.lowercased() == "tennis" {
+            if (sportLowercased == "tennis" || sportLowercased == "basketball") {
                 if let player = presenter.getTeam(at: indexPath.row) {
                     showAlert(
-                        title: "Tennis Player Info",
+                        title: "\(sportLowercased.capitalized) Player Info",
                         message: "Detailed statistics for \(player.standingTeam ?? "this player") are not available."
                     )
                 } else {
                     showAlert(
-                        message: "Detailed statistics for tennis players are not available."
+                        message: "Detailed statistics for \(sportLowercased) players are not available."
                     )
                 }
                 return
