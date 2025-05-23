@@ -19,6 +19,7 @@ class TeamDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var teamLogo: UIImageView!
     
     var playersList: [Player]?
+    var coachesList: [Coach]?
     var teamId: Int?
     var sport: String?
     
@@ -45,38 +46,52 @@ class TeamDetailsViewController: UIViewController, UITableViewDataSource, UITabl
             } else {
                 self.teamLogo.image = UIImage(named: "football")
             }
-            self.coachName.text = teamDetails.coaches[0].coachName
+//            self.coachName.text = teamDetails.coaches[0].coachName
             self.playersList = teamDetails.players
+            self.coachesList = teamDetails.coaches
             self.teamDetailTableView.reloadData()
         }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playersList?.count ?? 0
-    }
+            if section == 0 {
+                return coachesList?.count ?? 0
+            }
+            return playersList?.count ?? 0
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "team_details", for: indexPath) as! TeamDetailsTableViewCell
-
-        guard let player = playersList?[indexPath.row] else { return UITableViewCell() }
-
-        cell.playerName.text = player.playerName
-        if let imageUrlString = player.playerImage, !imageUrlString.isEmpty, let imageUrl = URL(string: imageUrlString) {
-            cell.playerImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "avatar.jpg"))
-        } else {
-            cell.playerImage.image = UIImage(named: "avatar.jpg")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "team_details", for: indexPath) as! TeamDetailsTableViewCell
+            
+            if indexPath.section == 0 {
+                guard let coach = coachesList?[indexPath.row] else { return UITableViewCell() }
+                cell.playerName.text = coach.coachName
+                cell.playerImage.image = UIImage(named: "avatar.jpg")
+                cell.playerNumber.text = ""
+                cell.playerPosition.text = ""
+                cell.playerRating.text = ""
+                return cell
+            } else {
+                guard let player = playersList?[indexPath.row] else { return UITableViewCell() }
+                
+                cell.playerName.text = player.playerName
+                if let imageUrlString = player.playerImage, !imageUrlString.isEmpty, let imageUrl = URL(string: imageUrlString) {
+                    cell.playerImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "avatar.jpg"))
+                } else {
+                    cell.playerImage.image = UIImage(named: "avatar.jpg")
+                }
+                
+                cell.playerNumber.text = player.playerNumber
+                cell.playerPosition.text = player.playerType
+                cell.playerRating.text = player.playerRating
+                
+                return cell
+            }
         }
-        
-        cell.playerNumber.text = player.playerNumber
-        cell.playerPosition.text = player.playerType
-        cell.playerRating.text = player.playerRating
-
-        return cell
-    }
 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -84,7 +99,7 @@ class TeamDetailsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Players"
+        ["Coaches", "Players"][section]
     }
     
 }

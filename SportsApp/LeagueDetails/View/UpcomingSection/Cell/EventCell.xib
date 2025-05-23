@@ -50,7 +50,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manchester" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SES-8F-X2F">
-                    <rect key="frame" x="23" y="112.00000000000001" width="90" height="40.666666666666671"/>
+                    <rect key="frame" x="23" y="112" width="90" height="13"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="iby-IG-TTl"/>
                     </constraints>
@@ -64,6 +64,7 @@
             <constraints>
                 <constraint firstItem="SES-8F-X2F" firstAttribute="top" secondItem="iVy-Il-Heg" secondAttribute="bottom" constant="8" id="1dW-EB-qDQ"/>
                 <constraint firstAttribute="trailing" secondItem="Sdx-Gv-f2I" secondAttribute="trailing" constant="123.67" id="27C-0x-UWI"/>
+                <constraint firstAttribute="bottom" secondItem="SES-8F-X2F" secondAttribute="bottom" constant="40" id="3wW-Vx-oTE"/>
                 <constraint firstItem="iVy-Il-Heg" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-17" id="4vp-th-j4i"/>
                 <constraint firstItem="iVy-Il-Heg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="36" id="9oG-Ke-cvB"/>
                 <constraint firstItem="c0R-hG-e8g" firstAttribute="centerX" secondItem="Sdx-Gv-f2I" secondAttribute="centerX" id="AlA-Cp-xkR"/>
