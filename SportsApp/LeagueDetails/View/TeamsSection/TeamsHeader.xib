@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeagueDetailsCollectionViewController" customModule="SportsApp" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="wbF-iM-TXP" customClass="TeamsHeader" customModule="SportsApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="351" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="0.0" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="POS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBp-Wp-0Re">
@@ -39,7 +39,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEt-4K-P5W">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEt-4K-P5W">
                     <rect key="frame" x="133.33333333333334" y="32" width="44.333333333333343" height="21"/>
                     <color key="tintColor" red="0.0" green="0.22352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -70,7 +70,7 @@
                 <outlet property="TeamLable" destination="GEt-4K-P5W" id="YBw-0B-N06"/>
                 <outlet property="WinsLable" destination="hwV-tU-cRG" id="uaY-7c-fjY"/>
             </connections>
-            <point key="canvasLocation" x="-83.206106870229007" y="-531.69014084507046"/>
+            <point key="canvasLocation" x="-83.969465648854964" y="-531.69014084507046"/>
         </view>
     </objects>
     <resources>

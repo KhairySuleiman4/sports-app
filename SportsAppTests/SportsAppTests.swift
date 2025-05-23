@@ -119,6 +119,7 @@ class NetworkManagerTests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
     }
+    
     func testFetchLeaguePlayersSuccess() {
         fakeNetwork = FakeNetwork(shouldReturnError: false)
         let expectation = self.expectation(description: "Fetch Tennis Players API")
