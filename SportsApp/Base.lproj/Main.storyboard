@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rWP-gl-zZT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CJq-zG-4c1">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="B2P-VW-ysh">
-                                <rect key="frame" x="21.333333333333343" y="125.66666666666669" width="385.33333333333326" height="679.66666666666652"/>
+                                <rect key="frame" x="21.333333333333343" y="128.66666666666669" width="385.33333333333326" height="676.66666666666652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="fav_league_cell" id="nyq-bt-IaT" customClass="FavLeagueCell" customModule="SportsApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="385.33333333333326" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="385.33333333333326" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nyq-bt-IaT" id="wHg-s3-CRW">
                                             <rect key="frame" x="0.0" y="0.0" width="385.33333333333326" height="43.666667938232422"/>
@@ -49,7 +50,7 @@
                                 </prototypes>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2qf-Np-Ay8">
-                                <rect key="frame" x="53.666666666666657" y="88" width="321" height="30.666666666666671"/>
+                                <rect key="frame" x="53.666666666666657" y="91" width="321" height="30.666666666666671"/>
                                 <segments>
                                     <segment title="Football"/>
                                     <segment title="Tennis"/>
@@ -82,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTT-0c-6Cu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3597.1962616822429" y="283.80129589632833"/>
+            <point key="canvasLocation" x="4497.1962616822429" y="283.80129589632833"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="uJh-Fc-Mke">
@@ -102,11 +103,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-dK-CLT">
-                                <rect key="frame" x="21.333333333333343" y="165" width="385.33333333333326" height="594"/>
+                                <rect key="frame" x="21.333333333333343" y="168" width="385.33333333333326" height="592"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="team_details" rowHeight="224" id="Kgk-xB-zCT" customClass="TeamDetailsTableViewCell" customModule="SportsApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="385.33333333333326" height="224"/>
+                                        <rect key="frame" x="0.0" y="50" width="385.33333333333326" height="224"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kgk-xB-zCT" id="yq5-5c-q83">
                                             <rect key="frame" x="0.0" y="0.0" width="385.33333333333326" height="224"/>
@@ -189,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHp-lT-1Hy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4976.6355140186915" y="-397.84017278617711"/>
+            <point key="canvasLocation" x="5876.6355140186915" y="-397.84017278617711"/>
         </scene>
         <!--Sports-->
         <scene sceneID="3Uw-cb-L30">
@@ -200,7 +201,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fm7-zu-fWA">
-                                <rect key="frame" x="53.666666666666657" y="280.33333333333337" width="321" height="370.33333333333337"/>
+                                <rect key="frame" x="53.666666666666657" y="281.66666666666663" width="321" height="370.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="20" sectionInsetReference="safeArea" id="eP5-oL-IYM">
                                     <size key="itemSize" width="128" height="128"/>
@@ -266,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjT-cd-a5m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2698.5981308411215" y="-396.54427645788337"/>
+            <point key="canvasLocation" x="3598.5981308411215" y="-396.54427645788337"/>
         </scene>
         <!--Sport Leagues View Controller-->
         <scene sceneID="qgF-qH-o65">
@@ -277,11 +278,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fUm-hG-KlO">
-                                <rect key="frame" x="21.333333333333343" y="44" width="385.33333333333326" height="848"/>
+                                <rect key="frame" x="21.333333333333343" y="47" width="385.33333333333326" height="845"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" id="QII-K7-lft" customClass="LeagueCell" customModule="SportsApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="385.33333333333326" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="385.33333333333326" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QII-K7-lft" id="6dv-ig-bkW">
                                             <rect key="frame" x="0.0" y="0.0" width="385.33333333333326" height="43.666667938232422"/>
@@ -342,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xY-pK-xhm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3458.4112149532707" y="-397.84017278617711"/>
+            <point key="canvasLocation" x="4358.4112149532712" y="-397.84017278617711"/>
         </scene>
         <!--League Details Collection View Controller-->
         <scene sceneID="oqp-cp-x9v">
@@ -376,7 +377,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1d-cz-WC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4212" y="-397"/>
+            <point key="canvasLocation" x="5111.2149532710273" y="-397.19222462203027"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cRQ-08-GzX">
@@ -395,14 +396,30 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aVy-DK-irK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1603" y="-22"/>
+            <point key="canvasLocation" x="2502.3364485981306" y="-22.030237580993521"/>
+        </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="MxF-Le-x5v">
+            <objects>
+                <viewController id="CJq-zG-4c1" customClass="SplashViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gcY-GC-m7G">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="axi-qK-c9l"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ebp-Ro-wUm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aHG-mO-xTG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="869.15887850467288" y="-16.198704103671709"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zjx-dC-URF">
             <objects>
-                <navigationController id="rWP-gl-zZT" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeViewController" id="rWP-gl-zZT" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1SK-ir-aLc">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -411,7 +428,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Irj-aP-IVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="802" y="-22"/>
+            <point key="canvasLocation" x="1701.8691588785045" y="-22.030237580993521"/>
         </scene>
         <!--Favorite Leagues-->
         <scene sceneID="Ngi-vm-a44">
@@ -420,7 +437,7 @@
                     <tabBarItem key="tabBarItem" title="Favorite Leagues" selectedImage="star.fill" catalog="system" id="duk-pG-YaJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TmJ-b5-7uq">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -430,12 +447,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Obj-CB-Of3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2697.1962616822429" y="283.80129589632833"/>
+            <point key="canvasLocation" x="3597.1962616822429" y="283.80129589632833"/>
         </scene>
     </scenes>
     <resources>
         <image name="avatar" width="5472" height="3648"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="placeholder" width="80" height="60"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
         <image name="square" width="512" height="512"/>

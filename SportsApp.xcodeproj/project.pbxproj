@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0452E0832DE1E0DD0073A347 /* Animation - 1748084695319.json in Resources */ = {isa = PBXBuildFile; fileRef = 0452E0822DE1E0DD0073A347 /* Animation - 1748084695319.json */; };
+		0452E0852DE1E15B0073A347 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0452E0842DE1E15B0073A347 /* SplashViewController.swift */; };
+		0452E0892DE1EA8F0073A347 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0452E0882DE1EA8F0073A347 /* Lottie */; };
+		0452E08C2DE1EBA00073A347 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 0452E08B2DE1EBA00073A347 /* SDWebImage */; };
+		0452E08F2DE1EBC90073A347 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0452E08E2DE1EBC90073A347 /* Alamofire */; };
 		04929D782DDD471B006A5CB1 /* SportsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04929D772DDD471B006A5CB1 /* SportsAppTests.swift */; };
 		04929D7F2DDD474B006A5CB1 /* FakeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04929D7E2DDD474B006A5CB1 /* FakeNetwork.swift */; };
 		04929D822DDD4841006A5CB1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -30,8 +35,6 @@
 		CF3255792DD52A92000CE58B /* SportsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF3255772DD52A92000CE58B /* SportsApp.xcdatamodeld */; };
 		CF32557B2DD52A94000CE58B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF32557A2DD52A94000CE58B /* Assets.xcassets */; };
 		CF32557E2DD52A94000CE58B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF32557C2DD52A94000CE58B /* LaunchScreen.storyboard */; };
-		CF424C582DE1B17900845E8F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CF424C572DE1B17900845E8F /* Alamofire */; };
-		CF424C5B2DE1B18900845E8F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CF424C5A2DE1B18900845E8F /* SDWebImage */; };
 		CF460C5F2DD6E6D9004A3B52 /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF460C5E2DD6E6D9004A3B52 /* SportsViewController.swift */; };
 		CF460C672DD6EFF4004A3B52 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF460C662DD6EFF4004A3B52 /* SportCell.swift */; };
 		CF460C692DD6FCAE004A3B52 /* SportLeaguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF460C682DD6FCAE004A3B52 /* SportLeaguesViewController.swift */; };
@@ -60,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0452E0822DE1E0DD0073A347 /* Animation - 1748084695319.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 1748084695319.json"; sourceTree = "<group>"; };
+		0452E0842DE1E15B0073A347 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		04929D752DDD471A006A5CB1 /* SportsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04929D772DDD471B006A5CB1 /* SportsAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppTests.swift; sourceTree = "<group>"; };
 		04929D7E2DDD474B006A5CB1 /* FakeNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeNetwork.swift; sourceTree = "<group>"; };
@@ -115,8 +120,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF424C5B2DE1B18900845E8F /* SDWebImage in Frameworks */,
-				CF424C582DE1B17900845E8F /* Alamofire in Frameworks */,
+				0452E08F2DE1EBC90073A347 /* Alamofire in Frameworks */,
+				0452E08C2DE1EBA00073A347 /* SDWebImage in Frameworks */,
+				0452E0892DE1EA8F0073A347 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +300,7 @@
 		CF32556D2DD52A92000CE58B /* SportsApp */ = {
 			isa = PBXGroup;
 			children = (
+				0452E0822DE1E0DD0073A347 /* Animation - 1748084695319.json */,
 				04546C062DDA80450073F8F7 /* FavouriteLeagues */,
 				04C0AF312DDA58D8004AA71F /* TeamDetails */,
 				04C12DEB2DD7906E00A0E0AC /* Model */,
@@ -307,6 +314,7 @@
 				CF32557F2DD52A94000CE58B /* Info.plist */,
 				CF3255772DD52A92000CE58B /* SportsApp.xcdatamodeld */,
 				CF460C5E2DD6E6D9004A3B52 /* SportsViewController.swift */,
+				0452E0842DE1E15B0073A347 /* SplashViewController.swift */,
 			);
 			path = SportsApp;
 			sourceTree = "<group>";
@@ -422,8 +430,9 @@
 			);
 			name = SportsApp;
 			packageProductDependencies = (
-				CF424C572DE1B17900845E8F /* Alamofire */,
-				CF424C5A2DE1B18900845E8F /* SDWebImage */,
+				0452E0882DE1EA8F0073A347 /* Lottie */,
+				0452E08B2DE1EBA00073A347 /* SDWebImage */,
+				0452E08E2DE1EBC90073A347 /* Alamofire */,
 			);
 			productName = SportsApp;
 			productReference = CF32556B2DD52A92000CE58B /* SportsApp.app */;
@@ -437,7 +446,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					04929D742DDD471A006A5CB1 = {
 						CreatedOnToolsVersion = 14.1;
@@ -458,8 +467,9 @@
 			);
 			mainGroup = CF3255622DD52A91000CE58B;
 			packageReferences = (
-				CF424C562DE1B17900845E8F /* XCRemoteSwiftPackageReference "Alamofire" */,
-				CF424C592DE1B18900845E8F /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				0452E0872DE1EA8F0073A347 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				0452E08A2DE1EBA00073A347 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				0452E08D2DE1EBC90073A347 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = CF32556C2DD52A92000CE58B /* Products */;
 			projectDirPath = "";
@@ -487,6 +497,7 @@
 				228BFEF82DDB51840023FA3A /* TeamsHeader.xib in Resources */,
 				228BFEF12DDB3D760023FA3A /* EventsHeader.xib in Resources */,
 				CF32557E2DD52A94000CE58B /* LaunchScreen.storyboard in Resources */,
+				0452E0832DE1E0DD0073A347 /* Animation - 1748084695319.json in Resources */,
 				CF32557B2DD52A94000CE58B /* Assets.xcassets in Resources */,
 				E879B7232DD7F6C300C7D402 /* EventCell.xib in Resources */,
 				CF3255762DD52A92000CE58B /* Main.storyboard in Resources */,
@@ -509,6 +520,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0452E0852DE1E15B0073A347 /* SplashViewController.swift in Sources */,
 				E879B7202DD7E95300C7D402 /* TeamCell.swift in Sources */,
 				E879B71B2DD7E4ED00C7D402 /* LeagueDetailsCollectionViewController.swift in Sources */,
 				E84970952DD8FD67008964EA /* LeagueDetailsPresenter.swift in Sources */,
@@ -577,6 +589,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -599,6 +612,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -817,15 +831,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CF424C562DE1B17900845E8F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		0452E0872DE1EA8F0073A347 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
-				kind = exactVersion;
-				version = 5.4.0;
+				kind = versionRange;
+				maximumVersion = 5.0.0;
+				minimumVersion = 4.0.0;
 			};
 		};
-		CF424C592DE1B18900845E8F /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		0452E08A2DE1EBA00073A347 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -833,18 +848,31 @@
 				version = 5.9.5;
 			};
 		};
+		0452E08D2DE1EBC90073A347 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CF424C572DE1B17900845E8F /* Alamofire */ = {
+		0452E0882DE1EA8F0073A347 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CF424C562DE1B17900845E8F /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = 0452E0872DE1EA8F0073A347 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
-		CF424C5A2DE1B18900845E8F /* SDWebImage */ = {
+		0452E08B2DE1EBA00073A347 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CF424C592DE1B18900845E8F /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = 0452E08A2DE1EBA00073A347 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		0452E08E2DE1EBC90073A347 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0452E08D2DE1EBC90073A347 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 
