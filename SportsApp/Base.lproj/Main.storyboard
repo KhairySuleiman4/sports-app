@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rWP-gl-zZT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rWP-gl-zZT">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -56,11 +57,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="B2P-VW-ysh">
-                                <rect key="frame" x="21.333333333333343" y="125.66666666666669" width="385.33333333333326" height="679.66666666666652"/>
+                                <rect key="frame" x="21.333333333333343" y="128.66666666666669" width="385.33333333333326" height="676.66666666666652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="fav_league_cell" id="nyq-bt-IaT" customClass="FavLeagueCell" customModule="SportsApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="385.33333333333326" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="385.33333333333326" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nyq-bt-IaT" id="wHg-s3-CRW">
                                             <rect key="frame" x="0.0" y="0.0" width="385.33333333333326" height="43.666667938232422"/>
@@ -94,7 +95,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2qf-Np-Ay8">
-                                <rect key="frame" x="53.666666666666657" y="88" width="321" height="30.666666666666671"/>
+                                <rect key="frame" x="53.666666666666657" y="91" width="321" height="30.666666666666671"/>
                                 <segments>
                                     <segment title="Football"/>
                                     <segment title="Tennis"/>
@@ -147,11 +148,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-dK-CLT">
-                                <rect key="frame" x="21.333333333333343" y="165" width="385.33333333333326" height="594"/>
+                                <rect key="frame" x="21.333333333333343" y="168" width="385.33333333333326" height="592"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="team_details" rowHeight="224" id="Kgk-xB-zCT" customClass="TeamDetailsTableViewCell" customModule="SportsApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="385.33333333333326" height="224"/>
+                                        <rect key="frame" x="0.0" y="50" width="385.33333333333326" height="224"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kgk-xB-zCT" id="yq5-5c-q83">
                                             <rect key="frame" x="0.0" y="0.0" width="385.33333333333326" height="224"/>
@@ -245,9 +246,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fm7-zu-fWA">
-                                <rect key="frame" x="52.666666666666657" y="266.33333333333337" width="322.66666666666674" height="398.33333333333337"/>
+                                <rect key="frame" x="53.666666666666657" y="281.66666666666663" width="321" height="370.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eP5-oL-IYM">
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="20" sectionInsetReference="safeArea" id="eP5-oL-IYM">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -261,18 +262,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uxx-9B-brE">
-                                                    <rect key="frame" x="16" y="0.0" width="96" height="96"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uxx-9B-brE">
+                                                    <rect key="frame" x="28" y="14" width="72" height="72"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="72" id="EwH-WG-nU1"/>
+                                                        <constraint firstAttribute="width" constant="72" id="xnO-Tu-397"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k76-GI-Oza">
-                                                    <rect key="frame" x="16" y="104" width="96" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k76-GI-Oza">
+                                                    <rect key="frame" x="43.333333333333329" y="93" width="41.333333333333329" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uxx-9B-brE" firstAttribute="centerX" secondItem="ddc-uW-X7s" secondAttribute="centerX" id="7zH-mt-1H4"/>
+                                                <constraint firstAttribute="bottom" secondItem="k76-GI-Oza" secondAttribute="bottom" constant="14" id="RQu-1d-b9L"/>
+                                                <constraint firstItem="k76-GI-Oza" firstAttribute="centerX" secondItem="ddc-uW-X7s" secondAttribute="centerX" id="ff1-gf-uUm"/>
+                                                <constraint firstItem="k76-GI-Oza" firstAttribute="top" secondItem="uxx-9B-brE" secondAttribute="bottom" constant="7" id="ffj-PP-2e0"/>
+                                                <constraint firstItem="uxx-9B-brE" firstAttribute="top" secondItem="ddc-uW-X7s" secondAttribute="top" constant="14" id="u0l-Z6-2Qk"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="sportImage" destination="uxx-9B-brE" id="nga-Cb-LUI"/>
@@ -289,10 +299,10 @@
                         <viewLayoutGuide key="safeArea" id="a18-zm-S1F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="fm7-zu-fWA" firstAttribute="height" secondItem="a18-zm-S1F" secondAttribute="height" multiplier="0.527489" id="Bwj-MD-cxh"/>
-                            <constraint firstItem="fm7-zu-fWA" firstAttribute="centerX" secondItem="a18-zm-S1F" secondAttribute="centerX" id="FBd-gW-qOy"/>
-                            <constraint firstItem="fm7-zu-fWA" firstAttribute="width" secondItem="a18-zm-S1F" secondAttribute="width" multiplier="0.753846" id="lQb-nw-F2v"/>
-                            <constraint firstItem="fm7-zu-fWA" firstAttribute="centerY" secondItem="a18-zm-S1F" secondAttribute="centerY" id="wHK-8Y-ESz"/>
+                            <constraint firstItem="fm7-zu-fWA" firstAttribute="height" secondItem="nOV-BH-4Np" secondAttribute="height" multiplier="0.4" id="SfQ-Iy-93y"/>
+                            <constraint firstItem="fm7-zu-fWA" firstAttribute="centerX" secondItem="a18-zm-S1F" secondAttribute="centerX" id="U94-NZ-eZM"/>
+                            <constraint firstItem="fm7-zu-fWA" firstAttribute="width" secondItem="nOV-BH-4Np" secondAttribute="width" multiplier="0.75" id="hBL-h9-VmI"/>
+                            <constraint firstItem="fm7-zu-fWA" firstAttribute="centerY" secondItem="a18-zm-S1F" secondAttribute="centerY" id="nRA-yr-JGz"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sports" selectedImage="soccerball.inverse" catalog="system" id="t0M-7Z-WkG"/>
@@ -312,19 +322,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Leagues" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXx-nB-Rex">
-                                <rect key="frame" x="20" y="56" width="388" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fUm-hG-KlO">
-                                <rect key="frame" x="21.333333333333343" y="44" width="385.33333333333326" height="848"/>
+                                <rect key="frame" x="21.333333333333343" y="47" width="385.33333333333326" height="845"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" id="QII-K7-lft" customClass="LeagueCell" customModule="SportsApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="385.33333333333326" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="385.33333333333326" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QII-K7-lft" id="6dv-ig-bkW">
                                             <rect key="frame" x="0.0" y="0.0" width="385.33333333333326" height="43.666667938232422"/>
@@ -380,7 +383,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="headerLabel" destination="TXx-nB-Rex" id="kuL-EW-inc"/>
                         <outlet property="leaguesTable" destination="fUm-hG-KlO" id="2FI-nA-pVz"/>
                     </connections>
                 </viewController>
@@ -446,7 +448,7 @@
             <objects>
                 <navigationController id="rWP-gl-zZT" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1SK-ir-aLc">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -460,7 +462,7 @@
     </scenes>
     <resources>
         <image name="avatar" width="5472" height="3648"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="placeholder" width="80" height="60"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
         <image name="square" width="512" height="512"/>

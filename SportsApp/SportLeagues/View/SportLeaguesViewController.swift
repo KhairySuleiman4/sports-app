@@ -16,7 +16,6 @@ protocol SportLeaguesViewProtocol: AnyObject {
 }
 
 class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SportLeaguesViewProtocol, LeagueCellDelegate  {
-    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var leaguesTable: UITableView!
     
     private var leagues: [Sport] = [] {
@@ -46,7 +45,6 @@ class SportLeaguesViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     private func setupUI() {
-        headerLabel?.text = "\(sportName ?? "") Leagues"
         leaguesTable.delegate = self
         leaguesTable.dataSource = self
     }

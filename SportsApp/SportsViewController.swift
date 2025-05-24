@@ -35,22 +35,26 @@ class SportsViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let spacing: CGFloat = 10
+        let isPortrait = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation.isPortrait ?? true
+        
         
         let itemsPerRow: CGFloat = 2
-        let spacing: CGFloat = 10
-        let totalSpacing = (itemsPerRow - 1) * spacing
         
-        let width = (collectionView.bounds.width - totalSpacing) / itemsPerRow
-        let height = collectionView.bounds.height / 2 - spacing
+        let totalSpacing = (itemsPerRow + 1) * spacing
+        let availableWidth = collectionView.bounds.width - totalSpacing
         
-        return CGSize(width: width, height: height)
+        let itemWidth = availableWidth / itemsPerRow
+        let itemHeight = itemWidth
         
+        return CGSize(width: itemWidth, height: itemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sportLeaguesViewController = self.storyboard?.instantiateViewController(withIdentifier: "SportLeaguesViewController") as! SportLeaguesViewController
         sportLeaguesViewController.sportName = sports[indexPath.row]
         self.navigationController?.pushViewController(sportLeaguesViewController, animated: true)
+        sportLeaguesViewController.title = "\(sports[indexPath.row]) Leagues"
     }
     
 }

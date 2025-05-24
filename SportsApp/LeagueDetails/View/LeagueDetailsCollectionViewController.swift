@@ -49,6 +49,15 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
 
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.collectionView.setCollectionViewLayout(self?.createLayout() ?? UICollectionViewLayout(), animated: true)
+            self?.collectionView.collectionViewLayout.invalidateLayout()
+        })
+    }
+    
     func configure(sport: String, leagueId: Int) {
             presenter = LeagueDetailsPresenter(view: self, sport: sport, leagueId: leagueId)
     }
@@ -126,46 +135,52 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
                 withReuseIdentifier: teamsHeaderIdentifier,
                 for: indexPath) as! TeamsHeader
             
+            let fontSize: CGFloat = 16
+            [headerView.TeamLable, headerView.PosLable, headerView.PointsLable,
+             headerView.PtsLable, headerView.WinsLable].forEach {
+                $0?.font = .systemFont(ofSize: fontSize, weight: .medium)
+                $0?.translatesAutoresizingMaskIntoConstraints = false
+            }
+            
             let teamsCount = presenter.getTeamsCount()
-                for i in 0..<teamsCount {
-                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
-                        headerView.TeamLable.center.x = teamCell.teamName.center.x
-                    }
-                    
-                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
-                        headerView.PosLable.center.x = teamCell.index.center.x
-                    }
-                    
-                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
-                        headerView.PointsLable.center.x = teamCell.teamPoints.center.x
-                    }
-                    
-                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
-                        headerView.PtsLable.center.x = teamCell.teamPts.center.x
-                    }
-                    
-                    if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
-                        headerView.WinsLable.center.x = teamCell.teamWins.center.x
-                    }
+            for i in 0..<teamsCount {
+                if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                    teamCell.index.center.x = headerView.PosLable.center.x
                 }
                 
+                if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                    headerView.TeamLable.center.x = teamCell.teamName.center.x
+                }
+            
                 
+                if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                    headerView.PointsLable.center.x = teamCell.teamPoints.center.x
+                }
+                
+                if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                    headerView.WinsLable.center.x = teamCell.teamWins.center.x
+                }
+                
+                if let teamCell = collectionView.cellForItem(at: IndexPath(item: i, section: indexPath.section)) as? TeamCell {
+                    headerView.PtsLable.center.x = teamCell.teamPts.center.x
+                }
+                
+            }
             
-            
-        
-            
-           let bottomBorder = CALayer()
-            bottomBorder.frame = CGRect(x: 0, y: headerView.frame.size.height - 1, width: headerView.frame.size.width, height: 1.0)
+            // Add bottom border
+            let bottomBorder = CALayer()
+            bottomBorder.frame = CGRect(x: 0, y: headerView.frame.size.height - 1,
+                                      width: headerView.frame.size.width, height: 1.0)
             bottomBorder.backgroundColor = blueColor.cgColor
             headerView.layer.addSublayer(bottomBorder)
             
-            
-            headerView.layer.cornerRadius = 0
-            headerView.layer.borderWidth = 0
-            headerView.clipsToBounds = true
-            
             return headerView
         }
+    }
+    
+    private func configureTeamsHeader(_ headerView: TeamsHeader) {
+        // Setup fonts
+        
     }
 
 
@@ -243,10 +258,18 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         case .teams:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: teamIdentifier, for: indexPath) as! TeamCell
             if let team = presenter.getTeam(at: indexPath.row) {
-                configureTeamCell(cell: cell, with: team)
+                // Calculate spacing and columnWidth as in the header
+                let spacing: CGFloat = isLandscape() ? 8 : 20
+                let containerWidth = cell.bounds.width - (2 * spacing)
+                let columnWidth = containerWidth / 5
+                configureTeamCell(cell: cell, with: team, spacing: spacing, columnWidth: columnWidth)
             }
             return cell
         }
+    }
+    
+    private func isLandscape() -> Bool {
+        return UIScreen.main.bounds.width > UIScreen.main.bounds.height
     }
     
     private func configureEventCell(cell: EventCell, with event: EventModel) {
@@ -308,22 +331,16 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         cell.layer.shadowOpacity = 0.2
     }
 
-    private func configureTeamCell(cell: TeamCell, with team: Total) {
+    private func configureTeamCell(cell: TeamCell, with team: Total, spacing: CGFloat, columnWidth: CGFloat) {
         cell.teamName.text = team.standingTeam
         cell.index.text = "\(team.standingPlace ?? 0)"
         
-
-        let stats: [(label: UILabel?, value: Int?)] = [
-            (cell.teamPoints, team.standingP),
-            (cell.teamWins, team.standingW),
-            (cell.teamPts, team.standingPTS)
-        ]
+        // Configure stats
+        cell.teamPoints.text = team.standingP == nil ? "-" : "\(team.standingP!)"
+        cell.teamWins.text = team.standingW == nil ? "-" : "\(team.standingW!)"
+        cell.teamPts.text = team.standingPTS == nil ? "-" : "\(team.standingPTS!)"
         
-        stats.forEach { stat in
-            stat.label?.text = (stat.value == nil || stat.value == 0) ? "-" : "\(stat.value!)"
-        }
-        
-
+        // Configure team logoviewForSupplementaryElementOfKind
         if let logoUrlString = team.teamLogo,
            !logoUrlString.isEmpty,
            let logoUrl = URL(string: logoUrlString) {
@@ -331,7 +348,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         } else {
             cell.teamLogo?.image = UIImage(named: "avatar")
         }
-    
     }
 
     
@@ -375,18 +391,18 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sectionType = getAvailableSections()[indexPath.section]
-        
+        var sportLowercased = sport.lowercased()
         switch sectionType {
         case .teams:
-            if sport.lowercased() == "tennis" {
+            if (sportLowercased == "tennis" || sportLowercased == "basketball") {
                 if let player = presenter.getTeam(at: indexPath.row) {
                     showAlert(
-                        title: "Tennis Player Info",
+                        title: "\(sportLowercased.capitalized) Player Info",
                         message: "Detailed statistics for \(player.standingTeam ?? "this player") are not available."
                     )
                 } else {
                     showAlert(
-                        message: "Detailed statistics for tennis players are not available."
+                        message: "Detailed statistics for \(sportLowercased) players are not available."
                     )
                 }
                 return
