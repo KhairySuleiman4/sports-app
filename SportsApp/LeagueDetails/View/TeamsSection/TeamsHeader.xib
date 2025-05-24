@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LeagueDetailsCollectionViewController" customModule="SportsApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="wbF-iM-TXP" customClass="TeamsHeader" customModule="SportsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="0.0" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="POS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBp-Wp-0Re">
+                    <rect key="frame" x="8" y="32.666666666666664" width="35.333333333333336" height="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="P" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8R-iq-kwg">
+                    <rect key="frame" x="232.66666666666666" y="32" width="11" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwV-tU-cRG">
+                    <rect key="frame" x="273.66666666666669" y="32" width="17" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Pts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P10-uL-cGB">
+                    <rect key="frame" x="320.66666666666669" y="32" width="27.333333333333314" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEt-4K-P5W">
+                    <rect key="frame" x="133.33333333333334" y="32" width="44.333333333333343" height="21"/>
+                    <color key="tintColor" red="0.0" green="0.22352941179999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="QXv-Ho-IAV"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <accessibility key="accessibilityConfiguration" identifier="TeamsHeader"/>
+            <constraints>
+                <constraint firstItem="zBp-Wp-0Re" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="8GX-Ji-CtT"/>
+                <constraint firstItem="hwV-tU-cRG" firstAttribute="leading" secondItem="j8R-iq-kwg" secondAttribute="trailing" constant="29.999999999999972" id="9L4-D6-AI6"/>
+                <constraint firstItem="GEt-4K-P5W" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="Enj-nu-cdm"/>
+                <constraint firstItem="P10-uL-cGB" firstAttribute="leading" secondItem="hwV-tU-cRG" secondAttribute="trailing" constant="30" id="HLf-sd-QSQ"/>
+                <constraint firstItem="hwV-tU-cRG" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="Jl3-cS-HvD"/>
+                <constraint firstItem="zBp-Wp-0Re" firstAttribute="leading" secondItem="QXv-Ho-IAV" secondAttribute="leading" constant="8" id="OC3-5i-GoI"/>
+                <constraint firstItem="P10-uL-cGB" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="QXQ-Ms-S4c"/>
+                <constraint firstItem="j8R-iq-kwg" firstAttribute="centerY" secondItem="QXv-Ho-IAV" secondAttribute="centerY" id="RPn-cw-zlA"/>
+                <constraint firstItem="j8R-iq-kwg" firstAttribute="leading" secondItem="GEt-4K-P5W" secondAttribute="trailing" constant="55" id="Yl6-eN-Ize"/>
+                <constraint firstItem="GEt-4K-P5W" firstAttribute="leading" secondItem="zBp-Wp-0Re" secondAttribute="trailing" constant="90" id="fkR-k1-LTD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="PointsLable" destination="j8R-iq-kwg" id="5E7-W4-BMR"/>
+                <outlet property="PosLable" destination="zBp-Wp-0Re" id="RGe-Qt-dOf"/>
+                <outlet property="PtsLable" destination="P10-uL-cGB" id="7mq-eS-Nwb"/>
+                <outlet property="TeamLable" destination="GEt-4K-P5W" id="YBw-0B-N06"/>
+                <outlet property="WinsLable" destination="hwV-tU-cRG" id="uaY-7c-fjY"/>
+            </connections>
+            <point key="canvasLocation" x="-83.969465648854964" y="-531.69014084507046"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
