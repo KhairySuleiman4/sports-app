@@ -79,6 +79,7 @@ class FavouriteLeaguesViewController: UIViewController, UITableViewDataSource, U
             if let leaguesDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController {
                 leaguesDetailsViewController.sport = sportType
                 leaguesDetailsViewController.leagueId = leagueId
+                leaguesDetailsViewController.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(leaguesDetailsViewController, animated: true)
             }
         } else {

@@ -391,18 +391,24 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sectionType = getAvailableSections()[indexPath.section]
-        var sportLowercased = sport.lowercased()
+        let sportLowercased = sport.lowercased()
+        
         switch sectionType {
         case .teams:
-            if (sportLowercased == "tennis" || sportLowercased == "basketball") {
-                if let player = presenter.getTeam(at: indexPath.row) {
+            let unavailableSports: Set<String> = ["tennis", "basketball", "cricket"]
+            
+            if unavailableSports.contains(sportLowercased) {
+                if let team = presenter.getTeam(at: indexPath.row) {
+                    let subject = (sportLowercased == "tennis") ? "Player" : "Team"
+                    let name = team.standingTeam ?? "this \(subject.lowercased())"
                     showAlert(
-                        title: "\(sportLowercased.capitalized) Player Info",
-                        message: "Detailed statistics for \(player.standingTeam ?? "this player") are not available."
+                        title: "\(sportLowercased.capitalized) \(subject) Info",
+                        message: "Detailed statistics for \(name) are not available."
                     )
                 } else {
+                    let subject = (sportLowercased == "tennis") ? "players" : "teams"
                     showAlert(
-                        message: "Detailed statistics for \(sportLowercased) players are not available."
+                        message: "Detailed statistics for \(sportLowercased) \(subject) are not available."
                     )
                 }
                 return
@@ -410,8 +416,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
             
             if let team = presenter.getTeam(at: indexPath.row) {
                 navigateToTeamDetails(with: team)
-                
             }
+            
         default:
             break
         }
@@ -422,8 +428,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController, UIColle
         if let teamDetailsVC = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as? TeamDetailsViewController {
             teamDetailsVC.teamId = team.teamKey
             teamDetailsVC.sport = self.sport
-            self.navigationController?.pushViewController(teamDetailsVC, animated: true)
             teamDetailsVC.title = "Team Details"
+            self.navigationController?.pushViewController(teamDetailsVC, animated: true)
         }
     }
     
